@@ -15,7 +15,7 @@ To be included, with the associated function prefix:
 
 ```r
 install.packages("devtools")
-devtools::install_github("sckott/branching")
+devtools::install_github("ropensci/branching")
 ```
 
 
@@ -56,3 +56,11 @@ plot(tree, no.margin=TRUE)
 ```
 
 ![plot of chunk unnamed-chunk-6](inst/img/unnamed-chunk-6-1.png) 
+
+## Meta
+
+* [Please report any issues or bugs](https://github.com/ropensci/branching/issues).
+* License: MIT
+* Get citation information for `branching` in R doing `citation(package = 'branching')`
+
+[![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
