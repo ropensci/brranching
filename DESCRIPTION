@@ -6,8 +6,8 @@ Date: 2015-02-02
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
 License: MIT + file LICENSE
-URL: https://github.com/sckott/branching
-BugReports: http://www.github.com/sckott/branching/issues
+URL: https://github.com/ropensci/branching
+BugReports: http://www.github.com/ropensci/branching/issues
 LazyData: true
 Roxygen: list(wrap = FALSE)
 Imports:
