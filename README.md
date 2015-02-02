@@ -41,7 +41,7 @@ You can pass in up to about 5000 names. We can use `taxize` to get a random set 
 library("taxize")
 spp <- names_list("species", 200)
 out <- phylomatic(taxa = spp, get = "POST")
-plot(out)
+plot(out, show.tip.label = FALSE)
 ```
 
 ![plot of chunk unnamed-chunk-5](inst/img/unnamed-chunk-5-1.png) 
