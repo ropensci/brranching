@@ -7,8 +7,8 @@ R client to fetch phylogenies from many places
 
 To be included, with the associated function prefix:
 
-* [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic_`
-* ...
+* [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic`
+* [Open Tree of Life](http://blog.opentreeoflife.org/) - `tol`
 
 ## Installation
 
@@ -45,3 +45,14 @@ plot(out, show.tip.label = FALSE)
 ```
 
 ![plot of chunk unnamed-chunk-5](inst/img/unnamed-chunk-5-1.png) 
+
+## Open Tree of Life
+
+
+```r
+taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
+tree <- tol(taxa)
+plot(tree, no.margin=TRUE)
+```
+
+![plot of chunk unnamed-chunk-6](inst/img/unnamed-chunk-6-1.png) 

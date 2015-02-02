@@ -50,15 +50,6 @@ plot(out, show.tip.label = FALSE)
 
 ```{r}
 taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
-tree <- phylomatic(taxa=taxa, get = 'POST')
+tree <- tol(taxa)
 plot(tree, no.margin=TRUE)
-```
-
-You can pass in up to about 5000 names. We can use `taxize` to get a random set of plant species names. 
-
-```{r}
-library("taxize")
-spp <- names_list("species", 200)
-out <- phylomatic(taxa = spp, get = "POST")
-plot(out, show.tip.label = FALSE)
 ```
