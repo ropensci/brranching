@@ -14,7 +14,7 @@ Imports:
     httr,
     ape,
     taxize,
-    treebase
+    rotl
 Suggests:
     roxygen2,
     testthat

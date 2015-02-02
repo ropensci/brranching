@@ -2,6 +2,9 @@
 
 export(phylomatic)
 export(phylomatic_names)
+export(tol)
 import(httr)
 importFrom(ape,read.tree)
+importFrom(rotl,tnrs_match_names)
+importFrom(rotl,tol_induced_subtree)
 importFrom(taxize,tax_name)

@@ -20,8 +20,8 @@
 #' @param outformat One of newick, nexml, or fyt.
 #' @param clean Return a clean tree or not.
 #' @param db One of "ncbi", "itis", or "apg"
-#' @param verbose Print messages (default: TRUE).
-#' @details Use the web interface here http://phylodiversity.net/phylomatic/
+#' @param verbose Print messages. Default: \code{TRUE}
+#' @details Use the web interface at \url{http://phylodiversity.net/phylomatic/}
 #' @return Newick formatted tree or nexml text.
 #' @examples \dontrun{
 #' # Input taxonomic names

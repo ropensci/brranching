@@ -1,14 +1,8 @@
-#' traits
+#' Phylogenies from many sources
 #'
-#' @name traits-package
-#' @aliases traits
+#' @name branching-package
+#' @aliases branching
 #' @docType package
-#' @title Species trait data from around the web
+#' @title Phylogenies from many sources
 #' @keywords package
-NULL
-
-#' PLANTATT plant traits dataset
-#' @name plantatt
-#' @docType data
-#' @keywords data
 NULL

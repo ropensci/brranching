@@ -37,7 +37,7 @@ mammals).}
 
 \item{db}{One of "ncbi", "itis", or "apg"}
 
-\item{verbose}{Print messages (default: TRUE).}
+\item{verbose}{Print messages. Default: \code{TRUE}}
 }
 \value{
 Newick formatted tree or nexml text.
@@ -46,10 +46,10 @@ Newick formatted tree or nexml text.
 Query Phylomatic for a phylogenetic tree.
 }
 \details{
-Use the web interface here http://phylodiversity.net/phylomatic/
+Use the web interface at \url{http://phylodiversity.net/phylomatic/}
 }
 \examples{
-\donttest{
+\dontrun{
 # Input taxonomic names
 taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
 tree <- phylomatic(taxa=taxa, get = 'POST')
@@ -74,6 +74,7 @@ cat(out)
 # Lots of names, note that when you have enough names (number depends on length of individual
 # names, so there's no per se rule), you will get an error when using \\code{get='GET'},
 # when that happens use \\code{get='POST'}
+library("taxize")
 spp <- names_list("species", 200)
 (out <- phylomatic(taxa = spp, get = "GET"))
 (out <- phylomatic(taxa = spp, get = "POST"))

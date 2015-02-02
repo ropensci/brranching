@@ -15,8 +15,8 @@ R client to fetch phylogenies from many places
 
 To be included, with the associated function prefix:
 
-* [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic_`
-* ...
+* [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic`
+* [Open Tree of Life](http://blog.opentreeoflife.org/) - `tol`
 
 ## Installation
 
@@ -30,6 +30,23 @@ library("branching")
 ```
 
 ## Phylomatic
+
+```{r}
+taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
+tree <- phylomatic(taxa=taxa, get = 'POST')
+plot(tree, no.margin=TRUE)
+```
+
+You can pass in up to about 5000 names. We can use `taxize` to get a random set of plant species names. 
+
+```{r}
+library("taxize")
+spp <- names_list("species", 200)
+out <- phylomatic(taxa = spp, get = "POST")
+plot(out, show.tip.label = FALSE)
+```
+
+## Open Tree of Life
 
 ```{r}
 taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
