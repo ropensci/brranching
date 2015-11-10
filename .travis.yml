@@ -8,7 +8,6 @@ env:
      - R_CHECK_ARGS="--as-cran --no-manual"
 
 notifications:
- slack: ropensci:wh30e1MP9Am3wXb2wJx1ZRFi
  email:
    on_success: change
    on_failure: change
