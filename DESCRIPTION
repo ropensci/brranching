@@ -1,20 +1,20 @@
 Package: branching
-Title: Phylogenies from many sources
-Description: Phylogenies from many sources
-Version: 0.0.0.99
-Date: 2015-02-02
+Title: Fetch Phylogenies from Many Sources
+Description: Includes methods for fetching phylogenies from a variety
+    of sources, including Phylomatic (http://phylodiversity.net/phylomatic/),
+    and xxx.
+Version: 0.0.1.9000
+Date: 2015-11-09
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/branching
 BugReports: http://www.github.com/ropensci/branching/issues
 LazyData: true
-Roxygen: list(wrap = FALSE)
 Imports:
     httr,
     ape,
-    taxize,
-    rotl
+    taxize
 Suggests:
-    roxygen2,
     testthat
+RoxygenNote: 5.0.0
