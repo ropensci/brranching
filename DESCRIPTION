@@ -3,7 +3,7 @@ Title: Fetch Phylogenies from Many Sources
 Description: Includes methods for fetching phylogenies from a variety
     of sources, including Phylomatic (http://phylodiversity.net/phylomatic/),
     and xxx.
-Version: 0.0.1.9000
+Version: 0.0.2.9000
 Date: 2015-11-09
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")

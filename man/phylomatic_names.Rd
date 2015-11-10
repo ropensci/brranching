@@ -2,8 +2,7 @@
 % Please edit documentation in R/phylomatic_names.R
 \name{phylomatic_names}
 \alias{phylomatic_names}
-\title{Get family names to make Phylomatic input object, and output input string
-   to Phylomatic for use in the function phylomatic_tree.}
+\title{Phylomatic names}
 \usage{
 phylomatic_names(taxa = NA, format = "isubmit", db = "ncbi")
 }
@@ -19,8 +18,8 @@ website), or 'rsubmit' to use in fxn phylomatic_tree}
 e.g., "pinaceae/pinus/pinus_contorta", in Phylomatic submission format.
 }
 \description{
-Get family names to make Phylomatic input object, and output input string
-   to Phylomatic for use in the function phylomatic_tree.
+Get family names to make Phylomatic input object, and
+output input string to Phylomatic for use in the function phylomatic
 }
 \examples{
 \dontrun{
