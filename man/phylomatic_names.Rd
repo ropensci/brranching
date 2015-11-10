@@ -25,6 +25,8 @@ output input string to Phylomatic for use in the function phylomatic
 \dontrun{
 mynames <- c("Poa annua", "Salix goodingii", "Helianthus annuus")
 phylomatic_names(mynames, format='rsubmit')
+phylomatic_names(mynames, format='rsubmit', db="apg")
+phylomatic_names(mynames, format='isubmit', db="ncbi")
 phylomatic_names(mynames, format='isubmit', db="apg")
 }
 }

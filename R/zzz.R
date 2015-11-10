@@ -1,6 +1,6 @@
-mssg <- function(v, ...) if(v) message(...)
+mssg <- function(v, ...) if (v) message(...)
 
-try_default <- function (expr, default, quiet = FALSE){
+try_default <- function(expr, default, quiet = FALSE){
     result <- default
     if (quiet) {
         tryCatch(result <- expr, error = function(e) {
@@ -12,7 +12,7 @@ try_default <- function (expr, default, quiet = FALSE){
     result
 }
 
-failwith <- function (default = NULL, f, quiet = FALSE){
+failwith <- function(default = NULL, f, quiet = FALSE){
     f <- match.fun(f)
     function(...) try_default(f(...), default, quiet = quiet)
 }
@@ -31,16 +31,16 @@ if(!onlyfirst){
 }
 }
 
-traitsc <- function (l) Filter(Negate(is.null), l)
+cpt <- function(l) Filter(Negate(is.null), l)
 
 strmatch <- function(x, y) regmatches(x, regexpr(y, x))
 
-tryfail <- function (default = NULL, f, quiet = FALSE){
+tryfail <- function(default = NULL, f, quiet = FALSE){
   f <- match.fun(f)
   function(...) trydefault(f(...), default, quiet = quiet)
 }
 
-trydefault <- function (expr, default, quiet = FALSE){
+trydefault <- function(expr, default, quiet = FALSE){
   result <- default
   if (quiet) {
     tryCatch(result <- expr, error = function(e) {

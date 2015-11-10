@@ -60,20 +60,21 @@
 
 phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
-  taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg", verbose=TRUE)
-{
+  taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg", verbose=TRUE) {
+
   url = "http://phylodiversity.net/phylomatic/pmws"
 
-  if(taxnames){
-    dat_ <- phylomatic_names(taxa, format='isubmit', db=db)
+  if (taxnames) {
+    dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
 
     checknas <- sapply(dat_, function(x) strsplit(x, "/")[[1]][1])
     checknas2 <- checknas[match("na", checknas)]
-    if(is.numeric(checknas2))
+    if (is.numeric(checknas2)) {
       stop(sprintf("A family was not found for the following taxa:\n %s \n\n try setting taxnames=FALSE, and passing in a vector of strings, like \n%s",
-                   paste(sapply(dat_, function(x) strsplit(x, "/")[[1]][3])[match("na", checknas)], collapse=", "),
+                   paste(sapply(dat_, function(x) strsplit(x, "/")[[1]][3])[match("na", checknas)], collapse = ", "),
                    'phylomatic(taxa = c("asteraceae/taraxacum/taraxacum_officinale", "ericaceae/gaylussacia/gaylussacia_baccata", "ericaceae/vaccinium/vaccinium_pallidum"), taxnames=FALSE, parallel=FALSE)'
       ))
+    }
 
   } else {
     dat_ <- taxa
@@ -84,49 +85,49 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
   }
 
   # Only one of storedtree or treeuri
-  if(!is.null(treeuri)) storedtree <- NULL
+  if (!is.null(treeuri)) storedtree <- NULL
 
-  args <- traitsc(list(taxa = dat_, informat = informat, method = method,
+  args <- cpt(list(taxa = dat_, informat = informat, method = method,
                        storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
                        outformat = outformat, clean = clean))
 
   if (get == 'POST') {
     # tt <- POST(url, body=list(taxa=dat_), query=args, multipart=FALSE)
-    tt <- POST(url, body=args, encode = 'form')
-    out <- content(tt, as="text")
+    tt <- POST(url, body = args, encode = 'form')
+    out <- content(tt, as = "text")
     # out <- postForm(url, .params=args, style = "POST")
   } else if (get == 'GET') {
-    tt <- GET(url, query=args)
-    if(tt$status_code == 414){
+    tt <- GET(url, query = args)
+    if (tt$status_code == 414) {
       stop("(414) Request-URI Too Long - Use get='POST' in your function call", call. = FALSE)
     } else {
       stop_for_status(tt)
     }
-    out <- content(tt, as="text")
-  } else
-  { stop("Error: get must be one of 'POST' or 'GET'") }
+    out <- content(tt, as = "text")
+  } else {
+    stop("Error: get must be one of 'POST' or 'GET'", call. = FALSE)
+  }
 
-  if(grepl("No taxa in common", out)){
+  if (grepl("No taxa in common", out)) {
     stop(out)
-  } else
-  {
+  } else {
     # parse out missing taxa note
-    if(grepl("\\[NOTE: ", out)){
+    if (grepl("\\[NOTE: ", out)) {
       taxa_na <- strmatch(out, "NOTE:.+")
       taxa_na2 <- strmatch(taxa_na, ":\\s[A-Za-z].+")
       taxa_na2 <- strsplit(taxa_na2, ",")[[1]][-length(strsplit(taxa_na2, ",")[[1]])]
       taxa_na2 <- gsub(":|\\s", "", taxa_na2)
-      taxa_na2 <- sapply(taxa_na2, function(x) strsplit(x, "/")[[1]][[3]], USE.NAMES=FALSE)
-      taxa_na2 <- traits_capwords(gsub("_", " ", taxa_na2), onlyfirst=TRUE)
+      taxa_na2 <- sapply(taxa_na2, function(x) strsplit(x, "/")[[1]][[3]], USE.NAMES = FALSE)
+      taxa_na2 <- traits_capwords(gsub("_", " ", taxa_na2), onlyfirst = TRUE)
 
       mssg(verbose, taxa_na)
       out <- gsub("\\[NOTE:.+", ";\n", out)
     } else {
-        taxa_na2 <- NULL
+      taxa_na2 <- NULL
     }
 
-    outformat <- match.arg(outformat, choices=c("nexml",'newick'))
-    getnewick <- function(x){
+    outformat <- match.arg(outformat, choices = c("nexml",'newick'))
+    getnewick <- function(x) {
       tree <- gsub("\n", "", x[[1]])
       read.tree(text = colldouble(tree))
     }
@@ -134,28 +135,28 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
     res <- switch(outformat,
            nexml = out,
            newick = getnewick(out))
-    structure(res, class=c("phylo","phylomatic"), missing=taxa_na2)
+    structure(res, class = c("phylo","phylomatic"), missing = taxa_na2)
   }
 }
 
 collapse_double_root <- function(y) {
   temp <- strsplit(y, ")")[[1]]
-  double <- c(length(temp)-1, length(temp))
+  double <- c(length(temp) - 1, length(temp))
   tempsplit <- temp[double]
   tempsplit_1 <- strsplit(tempsplit[1], ":")[[1]][2]
-  tempsplit_2 <-strsplit(tempsplit[2], ":")[[1]]
+  tempsplit_2 <- strsplit(tempsplit[2], ":")[[1]]
   rootlength <- as.numeric(tempsplit_1) +
     as.numeric(strsplit(tempsplit_2[2], ";")[[1]][1])
-  newx <- paste(")", tempsplit_2[1], ":", rootlength, ";", sep="")
+  newx <- paste(")", tempsplit_2[1], ":", rootlength, ";", sep = "")
   newpre <- gsub("[(]", "", temp[1])
   allelse <- temp[-1]
-  allelse <- allelse[setdiff(1:length(allelse), double-1)]
-  allelse <- paste(")", allelse, sep="")
-  paste(newpre, paste(allelse, collapse=""), newx, sep="")
+  allelse <- allelse[setdiff(1:length(allelse), double - 1)]
+  allelse <- paste(")", allelse, sep = "")
+  paste(newpre, paste(allelse, collapse = ""), newx, sep = "")
 }
 
 colldouble <- function(z) {
-  if( class ( try ( read.tree(text = z), silent = T ) ) %in% 'try-error' ){
+  if ( class( try( read.tree(text = z), silent = T ) ) %in% 'try-error' ) {
     treephylo <- collapse_double_root(z)
   } else {
     treephylo <- z
