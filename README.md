@@ -3,6 +3,9 @@ branching
 
 
 
+
+[![Build Status](https://travis-ci.org/ropensci/branching.svg?branch=master)](https://travis-ci.org/ropensci/branching)
+
 R client to fetch phylogenies from many places
 
 To be included, with the associated function prefix:
