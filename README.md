@@ -8,7 +8,7 @@ R client to fetch phylogenies from many places
 To be included, with the associated function prefix:
 
 * [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic`
-* [Open Tree of Life](http://blog.opentreeoflife.org/) - `tol`
+* xxx
 
 ## Installation
 
@@ -46,21 +46,11 @@ plot(out, show.tip.label = FALSE)
 
 ![plot of chunk unnamed-chunk-5](inst/img/unnamed-chunk-5-1.png) 
 
-## Open Tree of Life
-
-
-```r
-taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
-tree <- tol(taxa)
-plot(tree, no.margin=TRUE)
-```
-
-![plot of chunk unnamed-chunk-6](inst/img/unnamed-chunk-6-1.png) 
-
 ## Meta
 
-* [Please report any issues or bugs](https://github.com/ropensci/branching/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/branching/issues).
 * License: MIT
 * Get citation information for `branching` in R doing `citation(package = 'branching')`
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![rofooter](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
