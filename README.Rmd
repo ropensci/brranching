@@ -21,9 +21,17 @@ R client to fetch phylogenies from many places
 To be included, with the associated function prefix:
 
 * [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic`
-* xxx
+* more to come ...
 
 ## Installation
+
+Stable CRAN version
+
+```{r eval=FALSE}
+install.packages("brranching")
+```
+
+Or dev version
 
 ```{r eval=FALSE}
 install.packages("devtools")

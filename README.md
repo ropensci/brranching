@@ -13,9 +13,18 @@ R client to fetch phylogenies from many places
 To be included, with the associated function prefix:
 
 * [Phylomatic](http://phylodiversity.net/phylomatic/) - `phylomatic`
-* xxx
+* more to come ...
 
 ## Installation
+
+Stable CRAN version
+
+
+```r
+install.packages("brranching")
+```
+
+Or dev version
 
 
 ```r
@@ -37,7 +46,7 @@ tree <- phylomatic(taxa=taxa, get = 'POST')
 plot(tree, no.margin=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-4](inst/img/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-5](inst/img/unnamed-chunk-5-1.png) 
 
 You can pass in up to about 5000 names. We can use `taxize` to get a random set of plant species names.
 
@@ -49,7 +58,7 @@ out <- phylomatic(taxa = spp, get = "POST")
 plot(out, show.tip.label = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-5](inst/img/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-6](inst/img/unnamed-chunk-6-1.png) 
 
 ## Meta
 
