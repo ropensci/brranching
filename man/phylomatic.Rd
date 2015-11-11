@@ -12,20 +12,20 @@ phylomatic(taxa, taxnames = TRUE, get = "GET", informat = "newick",
 \arguments{
 \item{taxa}{Phylomatic format input of taxa names.}
 
-\item{taxnames}{If true, we get the family names for you to attach to your
-species names to send to Phylomatic API. If FALSE, you have to provide the
-strings in the right format.}
+\item{taxnames}{If \code{TRUE} (default), we get the family names for you to attach
+to your species names to send to Phylomatic API. If \code{FALSE}, you have to
+provide the strings in the right format.}
 
-\item{get}{'GET' or 'POST' format for submission to the website.}
+\item{get}{'GET' (default) or 'POST' format for submission to the website.}
 
-\item{informat}{One of newick, nexml, or cdaordf. If using a stored tree,
+\item{informat}{One of newick (default), nexml, or cdaordf. If using a stored tree,
 informat should always be newick.}
 
-\item{method}{One of phylomatic or convert}
+\item{method}{One of phylomatic (default) or convert}
 
 \item{storedtree}{One of R20120829 (Phylomatic tree R20120829 for plants),
 smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
-mammals).}
+mammals). Default: R20120829}
 
 \item{treeuri}{URL for a phylogenetic tree in newick format.}
 
@@ -33,14 +33,15 @@ mammals).}
 
 \item{outformat}{One of newick, nexml, or fyt.}
 
-\item{clean}{Return a clean tree or not.}
+\item{clean}{Return a clean tree or not. Default: \code{true}}
 
-\item{db}{One of "ncbi", "itis", or "apg"}
+\item{db}{One of "ncbi", "itis", or "apg". Default: apg}
 
 \item{verbose}{Print messages. Default: \code{TRUE}}
 }
 \value{
-Newick formatted tree or nexml text.
+Newick formatted tree as \code{phylo} object or
+nexml character string
 }
 \description{
 Query Phylomatic for a phylogenetic tree.
@@ -76,13 +77,14 @@ cat(out)
 # when that happens use \\code{get='POST'}
 library("taxize")
 spp <- names_list("species", 200)
-(out <- phylomatic(taxa = spp, get = "GET"))
+# phylomatic(taxa = spp, get = "GET")
 (out <- phylomatic(taxa = spp, get = "POST"))
 plot(out)
 
 # Pass in a tree from a URL on the web
-spp <- c('Abies amabilis','Abies balsamea','Abies bracteata','Abies concolor','Abies fraseri',
-   'Abies grandis','Abies lasiocarpa','Abies magnifica','Abies procera','Acacia berlandieri')
+
+spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
+"Abies_numidica", "Abies_pinsapo", "Abies_alba")
 url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
 phylomatic(taxa=spp, treeuri=url)
 }

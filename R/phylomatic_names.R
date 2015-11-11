@@ -17,14 +17,17 @@
 #' phylomatic_names(mynames, format='isubmit', db="apg")
 #' }
 
-phylomatic_names <- function(taxa = NA, format='isubmit', db="ncbi"){
+phylomatic_names <- function(taxa, format='isubmit', db="ncbi"){
+  format <- match.arg(format, c('isubmit', 'rsubmit'))
+  db <- match.arg(db, c('ncbi', 'itis', 'apg'))
+
   foo <- function(nnn) {
     # split up strings if a species name
     taxa2 <- strsplit(gsub("_"," ",nnn), "\\s")[[1]]
     taxa_genus <- traits_capwords(taxa2[[1]], onlyfirst = TRUE)
 
-    if (db %in% c("ncbi","itis")) {
-      family <- taxize::tax_name(query = taxa_genus, get = "family", db = db)
+    if (db %in% c("ncbi", "itis")) {
+      family <- taxize::tax_name(query = taxa_genus, get = "family", db = db)$family
     } else {
       tplfamily <- taxize::theplantlist[ match(taxa_genus, taxize::theplantlist$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]

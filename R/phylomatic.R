@@ -2,24 +2,28 @@
 #'
 #' @export
 #' @param taxa Phylomatic format input of taxa names.
-#' @param taxnames If true, we get the family names for you to attach to your
-#'    species names to send to Phylomatic API. If FALSE, you have to provide the
-#'    strings in the right format.
-#' @param get 'GET' or 'POST' format for submission to the website.
-#' @param informat One of newick, nexml, or cdaordf. If using a stored tree,
+#' @param taxnames If \code{TRUE} (default), we get the family names for you to attach
+#' to your species names to send to Phylomatic API. If \code{FALSE}, you have to
+#' provide the strings in the right format.
+#' @param get 'GET' (default) or 'POST' format for submission to the website.
+#' @param informat One of newick (default), nexml, or cdaordf. If using a stored tree,
 #'    informat should always be newick.
-#' @param method One of phylomatic or convert
+#' @param method One of phylomatic (default) or convert
 #' @param storedtree One of R20120829 (Phylomatic tree R20120829 for plants),
 #'    smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
-#'    mammals).
+#'    mammals). Default: R20120829
 #' @param treeuri URL for a phylogenetic tree in newick format.
 #' @param taxaformat Only option is slashpath for now. Leave as is.
 #' @param outformat One of newick, nexml, or fyt.
-#' @param clean Return a clean tree or not.
-#' @param db One of "ncbi", "itis", or "apg"
+#' @param clean Return a clean tree or not. Default: \code{true}
+#' @param db One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose Print messages. Default: \code{TRUE}
+#'
 #' @details Use the web interface at \url{http://phylodiversity.net/phylomatic/}
-#' @return Newick formatted tree or nexml text.
+#'
+#' @return Newick formatted tree as \code{phylo} object or
+#' nexml character string
+#'
 #' @examples \dontrun{
 #' # Input taxonomic names
 #' taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
@@ -47,13 +51,14 @@
 #' # when that happens use \code{get='POST'}
 #' library("taxize")
 #' spp <- names_list("species", 200)
-#' (out <- phylomatic(taxa = spp, get = "GET"))
+#' # phylomatic(taxa = spp, get = "GET")
 #' (out <- phylomatic(taxa = spp, get = "POST"))
 #' plot(out)
 #'
 #' # Pass in a tree from a URL on the web
-#' spp <- c('Abies amabilis','Abies balsamea','Abies bracteata','Abies concolor','Abies fraseri',
-#'    'Abies grandis','Abies lasiocarpa','Abies magnifica','Abies procera','Acacia berlandieri')
+#'
+#' spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
+#' "Abies_numidica", "Abies_pinsapo", "Abies_alba")
 #' url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
 #' phylomatic(taxa=spp, treeuri=url)
 #' }
@@ -92,10 +97,8 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
                        outformat = outformat, clean = clean))
 
   if (get == 'POST') {
-    # tt <- POST(url, body=list(taxa=dat_), query=args, multipart=FALSE)
     tt <- POST(url, body = args, encode = 'form')
     out <- content(tt, as = "text")
-    # out <- postForm(url, .params=args, style = "POST")
   } else if (get == 'GET') {
     tt <- GET(url, query = args)
     if (tt$status_code == 414) {
@@ -105,7 +108,7 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
     }
     out <- content(tt, as = "text")
   } else {
-    stop("Error: get must be one of 'POST' or 'GET'", call. = FALSE)
+    stop("get must be one of 'POST' or 'GET'", call. = FALSE)
   }
 
   if (grepl("No taxa in common", out)) {
@@ -132,10 +135,14 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
       read.tree(text = colldouble(tree))
     }
 
-    res <- switch(outformat,
-           nexml = out,
-           newick = getnewick(out))
-    structure(res, class = c("phylo","phylomatic"), missing = taxa_na2)
+    switch(outformat,
+           nexml = structure(out, class = "phylomatic", missing = taxa_na2),
+           newick = structure(getnewick(out), class = c("phylo", "phylomatic"), missing = taxa_na2))
+
+    # res <- switch(outformat,
+    #        nexml = out,
+    #        newick = getnewick(out))
+    # structure(res, class = c("phylo", "phylomatic"), missing = taxa_na2)
   }
 }
 

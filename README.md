@@ -5,6 +5,8 @@ brranching
 
 
 [![Build Status](https://travis-ci.org/ropensci/brranching.svg?branch=master)](https://travis-ci.org/ropensci/brranching)
+[![codecov.io](https://codecov.io/github/ropensci/brranching/coverage.svg?branch=master)](https://codecov.io/github/ropensci/brranching?branch=master)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/brranching)](https://github.com/metacran/cranlogs.app)
 
 R client to fetch phylogenies from many places
 

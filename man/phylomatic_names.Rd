@@ -4,7 +4,7 @@
 \alias{phylomatic_names}
 \title{Phylomatic names}
 \usage{
-phylomatic_names(taxa = NA, format = "isubmit", db = "ncbi")
+phylomatic_names(taxa, format = "isubmit", db = "ncbi")
 }
 \arguments{
 \item{taxa}{quoted tsn number (taxonomic serial number)}
