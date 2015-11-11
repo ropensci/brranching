@@ -51,7 +51,7 @@ test_that("phylomatic - treeuri param", {
   spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
     "Abies_numidica", "Abies_pinsapo", "Abies_alba")
   url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
-  tree <- phylomatic(spp, treeuri = url)
+  tree <- phylomatic(taxa = spp, treeuri = url)
 
   expect_is(tree, "phylo")
   expect_is(tree, "phylomatic")

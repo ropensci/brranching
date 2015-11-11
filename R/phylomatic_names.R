@@ -11,7 +11,7 @@
 #' @return e.g., "pinaceae/pinus/pinus_contorta", in Phylomatic submission format.
 #' @examples \dontrun{
 #' mynames <- c("Poa annua", "Salix goodingii", "Helianthus annuus")
-#' phylomatic_names(mynames, format='rsubmit')
+#' phylomatic_names(taxa = mynames, format='rsubmit')
 #' phylomatic_names(mynames, format='rsubmit', db="apg")
 #' phylomatic_names(mynames, format='isubmit', db="ncbi")
 #' phylomatic_names(mynames, format='isubmit', db="apg")
@@ -29,7 +29,7 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi"){
     if (db %in% c("ncbi", "itis")) {
       family <- taxize::tax_name(query = taxa_genus, get = "family", db = db)$family
     } else {
-      tplfamily <- taxize::theplantlist[ match(taxa_genus, taxize::theplantlist$genus), "family" ]
+      tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]
       if (nchar(as.character(dd$that)) == 0) {
         family <- dd$this
