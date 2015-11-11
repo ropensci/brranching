@@ -1,10 +1,10 @@
 Package: brranching
-Title: Fetch Phylogenies from Many Sources
-Description: Includes methods for fetching phylogenies from a variety
-    of sources, including Phylomatic (http://phylodiversity.net/phylomatic/),
-    and xxx.
-Version: 0.0.2.9000
-Date: 2015-11-09
+Title: Fetch 'Phylogenies' from Many Sources
+Description: Includes methods for fetching 'phylogenies' from a variety
+    of sources, currently includes 'Phylomatic'
+    (http://phylodiversity.net/phylomatic/), with more in the future.
+Version: 0.0.9.9000
+Date: 2015-11-11
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
 License: MIT + file LICENSE
