@@ -98,7 +98,7 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
 
   if (get == 'POST') {
     tt <- POST(url, body = args, encode = 'form')
-    out <- content(tt, as = "text")
+    out <- content(tt, as = "text", encoding = "UTF-8")
   } else if (get == 'GET') {
     tt <- GET(url, query = args)
     if (tt$status_code == 414) {
@@ -106,7 +106,7 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
     } else {
       stop_for_status(tt)
     }
-    out <- content(tt, as = "text")
+    out <- content(tt, as = "text", encoding = "UTF-8")
   } else {
     stop("get must be one of 'POST' or 'GET'", call. = FALSE)
   }
