@@ -18,6 +18,7 @@
 #' @param clean Return a clean tree or not. Default: \code{true}
 #' @param db One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose Print messages. Default: \code{TRUE}
+#' @param curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
 #'
 #' @details Use the web interface at \url{http://phylodiversity.net/phylomatic/}
 #'
@@ -50,7 +51,7 @@
 #' # names, so there's no per se rule), you will get an error when using \code{get='GET'},
 #' # when that happens use \code{get='POST'}
 #' library("taxize")
-#' spp <- names_list("species", 200)
+#' spp <- names_list("species", 5000)
 #' # phylomatic(taxa = spp, get = "GET")
 #' (out <- phylomatic(taxa = spp, get = "POST"))
 #' plot(out)
@@ -65,13 +66,11 @@
 
 phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
-  taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg", verbose=TRUE) {
-
-  url = "http://phylodiversity.net/phylomatic/pmws"
+  taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg",
+  verbose=TRUE, ...) {
 
   if (taxnames) {
     dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
-
     checknas <- sapply(dat_, function(x) strsplit(x, "/")[[1]][1])
     checknas2 <- checknas[match("na", checknas)]
     if (is.numeric(checknas2)) {
@@ -80,7 +79,6 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
                    'phylomatic(taxa = c("asteraceae/taraxacum/taraxacum_officinale", "ericaceae/gaylussacia/gaylussacia_baccata", "ericaceae/vaccinium/vaccinium_pallidum"), taxnames=FALSE, parallel=FALSE)'
       ))
     }
-
   } else {
     dat_ <- taxa
   }
@@ -97,10 +95,10 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
                        outformat = outformat, clean = clean))
 
   if (get == 'POST') {
-    tt <- POST(url, body = args, encode = 'form')
+    tt <- POST(phylo_base, body = args, encode = 'form', ...)
     out <- content(tt, as = "text", encoding = "UTF-8")
   } else if (get == 'GET') {
-    tt <- GET(url, query = args)
+    tt <- GET(phylo_base, query = args, ...)
     if (tt$status_code == 414) {
       stop("(414) Request-URI Too Long - Use get='POST' in your function call", call. = FALSE)
     } else {
@@ -138,35 +136,5 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
     switch(outformat,
            nexml = structure(out, class = "phylomatic", missing = taxa_na2),
            newick = structure(getnewick(out), class = c("phylo", "phylomatic"), missing = taxa_na2))
-
-    # res <- switch(outformat,
-    #        nexml = out,
-    #        newick = getnewick(out))
-    # structure(res, class = c("phylo", "phylomatic"), missing = taxa_na2)
   }
-}
-
-collapse_double_root <- function(y) {
-  temp <- strsplit(y, ")")[[1]]
-  double <- c(length(temp) - 1, length(temp))
-  tempsplit <- temp[double]
-  tempsplit_1 <- strsplit(tempsplit[1], ":")[[1]][2]
-  tempsplit_2 <- strsplit(tempsplit[2], ":")[[1]]
-  rootlength <- as.numeric(tempsplit_1) +
-    as.numeric(strsplit(tempsplit_2[2], ";")[[1]][1])
-  newx <- paste(")", tempsplit_2[1], ":", rootlength, ";", sep = "")
-  newpre <- gsub("[(]", "", temp[1])
-  allelse <- temp[-1]
-  allelse <- allelse[setdiff(1:length(allelse), double - 1)]
-  allelse <- paste(")", allelse, sep = "")
-  paste(newpre, paste(allelse, collapse = ""), newx, sep = "")
-}
-
-colldouble <- function(z) {
-  if ( class( try( read.tree(text = z), silent = T ) ) %in% 'try-error' ) {
-    treephylo <- collapse_double_root(z)
-  } else {
-    treephylo <- z
-  }
-  return(treephylo)
 }

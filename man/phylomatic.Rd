@@ -7,7 +7,7 @@
 phylomatic(taxa, taxnames = TRUE, get = "GET", informat = "newick",
   method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
   taxaformat = "slashpath", outformat = "newick", clean = "true",
-  db = "apg", verbose = TRUE)
+  db = "apg", verbose = TRUE, ...)
 }
 \arguments{
 \item{taxa}{Phylomatic format input of taxa names.}
@@ -38,6 +38,8 @@ mammals). Default: R20120829}
 \item{db}{One of "ncbi", "itis", or "apg". Default: apg}
 
 \item{verbose}{Print messages. Default: \code{TRUE}}
+
+\item{curl}{options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}}
 }
 \value{
 Newick formatted tree as \code{phylo} object or
@@ -76,7 +78,7 @@ cat(out)
 # names, so there's no per se rule), you will get an error when using \\code{get='GET'},
 # when that happens use \\code{get='POST'}
 library("taxize")
-spp <- names_list("species", 200)
+spp <- names_list("species", 5000)
 # phylomatic(taxa = spp, get = "GET")
 (out <- phylomatic(taxa = spp, get = "POST"))
 plot(out)
