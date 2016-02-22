@@ -18,7 +18,7 @@
 #' @param clean Return a clean tree or not. Default: \code{true}
 #' @param db One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose Print messages. Default: \code{TRUE}
-#' @param curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
+#' @param ... curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
 #'
 #' @details Use the web interface at \url{http://phylodiversity.net/phylomatic/}
 #'

@@ -39,7 +39,7 @@ mammals). Default: R20120829}
 
 \item{verbose}{Print messages. Default: \code{TRUE}}
 
-\item{curl}{options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}}
+\item{...}{curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}}
 }
 \value{
 Newick formatted tree as \code{phylo} object or
