@@ -51,6 +51,7 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   check_if("awk")
   check_if("gawk")
   check_pmws(path)
+  comment_lines(path)
 
   if (is.null(taxauri)) {
     if (taxnames) {
@@ -125,6 +126,24 @@ check_pmws <- function(path) {
     }
   } else {
     stop("code note available, see 'Fetch Phylomatic code' section", call. = FALSE)
+  }
+}
+
+comment_lines <- function(x) {
+  paths <- list.files(x, full.names = TRUE, recursive = TRUE)
+  # phylomatic.aw
+  pawk <- grep("phylomatic.awk", paths, value = TRUE)
+  pawk_orig <- readLines(pawk)
+  val <- grep("ntaxatrees > 5000", pawk_orig)
+  if (length(val) != 0) {
+    cat(pawk_orig[-grep("ntaxatrees > 5000", pawk_orig)], file = pawk, sep = "\n")
+  }
+  # pnws
+  pmws <- grep("pmws", paths, value = TRUE)
+  pmws_orig <- readLines(pmws)
+  val <- grep("length\\(tmpquery\\[2\\]\\) > 200000", pmws_orig)
+  if (length(val) != 0) {
+    cat(pmws_orig[-c(val, val + 1)], file = pmws, sep = "\n")
   }
 }
 
