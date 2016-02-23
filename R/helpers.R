@@ -24,3 +24,8 @@ colldouble <- function(z) {
   }
   return(treephylo)
 }
+
+getnewick <- function(x) {
+  tree <- gsub("\n", "", x[[1]])
+  read.tree(text = colldouble(tree))
+}
