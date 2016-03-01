@@ -8,7 +8,7 @@ phylomatic_local(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   informat = "newick", method = "phylomatic", storedtree = "R20120829",
   treeuri = NULL, taxaformat = "slashpath", outformat = "newick",
   clean = "true", db = "apg", verbose = TRUE, outfile = "out.new",
-  path = "phylomatic-ws", ...)
+  cleanup = TRUE, path = "phylomatic-ws", ...)
 }
 \arguments{
 \item{taxa}{Phylomatic format input of taxa names.}
@@ -32,11 +32,17 @@ mammals). Default: R20120829}
 
 \item{outformat}{One of newick, nexml, or fyt.}
 
-\item{clean}{Return a clean tree or not. Default: \code{true}}
+\item{clean}{(logical) Return a clean tree or not. Default: \code{true}}
 
-\item{db}{One of "ncbi", "itis", or "apg". Default: apg}
+\item{db}{(character) One of "ncbi", "itis", or "apg". Default: apg}
 
-\item{verbose}{Print messages. Default: \code{TRUE}}
+\item{verbose}{(logical) Print messages. Default: \code{TRUE}}
+
+\item{outfile}{(character) output file for the tree, cleaned up after}
+
+\item{cleanup}{(logical) Remove the output file. Default: \code{TRUE}}
+
+\item{path}{(character) Path to the \code{phylomatic-ws} folder}
 
 \item{...}{curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}}
 }

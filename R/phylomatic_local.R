@@ -14,9 +14,12 @@
 #' @param treeuri URL for a phylogenetic tree in newick format.
 #' @param taxaformat Only option is slashpath for now. Leave as is.
 #' @param outformat One of newick, nexml, or fyt.
-#' @param clean Return a clean tree or not. Default: \code{true}
-#' @param db One of "ncbi", "itis", or "apg". Default: apg
-#' @param verbose Print messages. Default: \code{TRUE}
+#' @param clean (logical) Return a clean tree or not. Default: \code{true}
+#' @param db (character) One of "ncbi", "itis", or "apg". Default: apg
+#' @param verbose (logical) Print messages. Default: \code{TRUE}
+#' @param outfile (character) output file for the tree, cleaned up after
+#' @param cleanup (logical) Remove the output file. Default: \code{TRUE}
+#' @param path (character) Path to the \code{phylomatic-ws} folder
 #' @param ... curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
 #'
 #' @section Fetch Phylomatic code:
@@ -47,16 +50,15 @@
 phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
   taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg",
-  verbose=TRUE, outfile = "out.new", path = "phylomatic-ws", ...) {
+  verbose=TRUE, outfile = "out.new", cleanup = TRUE, path = "phylomatic-ws", ...) {
 
   # check for awk, gawk, and awk files
   check_if("awk")
   check_if("gawk")
   check_pmws(path)
-  #comment_lines(path)
 
   if (is.null(taxauri)) {
-    message("preparing names...")
+    mssg(verbose, "preparing names...")
     if (taxnames) {
       dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
       checknas <- sapply(dat_, function(x) strsplit(x, "/")[[1]][1])
@@ -97,11 +99,11 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   file.create(datfile)
   cat(argstr, file = datfile)
 
-  on.exit(unlink(outfilepath))
+  if (cleanup) on.exit(unlink(outfilepath))
   on.exit(unlink(datfile), add = TRUE)
   on.exit(setwd(origpath), add = TRUE)
 
-  message("processing with phylomatic...")
+  mssg(verbose, "processing with phylomatic...")
   system(sprintf("cat %s | ./pmws > %s", datfile, outfilepath))
 
   # read in output
