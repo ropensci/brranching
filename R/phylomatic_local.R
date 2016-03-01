@@ -1,19 +1,20 @@
 #' Use Phylomatic locally - ideal for large queries
 #'
 #' @export
-#' @param taxa Phylomatic format input of taxa names.
+#' @param taxa (character) Phylomatic format input of taxa names.
+#' @param taxauri (character) URL of a taxa list online
 #' @param taxnames If \code{TRUE} (default), we get the family names for you to attach
 #' to your species names to send to Phylomatic API. If \code{FALSE}, you have to
 #' provide the strings in the right format.
-#' @param informat One of newick (default), nexml, or cdaordf. If using a stored tree,
+#' @param informat (character) One of newick (default), nexml, or cdaordf. If using a stored tree,
 #'    informat should always be newick.
-#' @param method One of phylomatic (default) or convert
-#' @param storedtree One of R20120829 (Phylomatic tree R20120829 for plants),
+#' @param method (character) One of 'phylomatic' (default) or 'convert'
+#' @param storedtree (character) One of R20120829 (Phylomatic tree R20120829 for plants),
 #'    smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
 #'    mammals). Default: R20120829
-#' @param treeuri URL for a phylogenetic tree in newick format.
-#' @param taxaformat Only option is slashpath for now. Leave as is.
-#' @param outformat One of newick, nexml, or fyt.
+#' @param treeuri (character) URL for a phylogenetic tree in newick format.
+#' @param taxaformat (character) Only option is slashpath for now. Leave as is.
+#' @param outformat (character) One of newick, nexml, or fyt.
 #' @param clean (logical) Return a clean tree or not. Default: \code{true}
 #' @param db (character) One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose (logical) Print messages. Default: \code{TRUE}

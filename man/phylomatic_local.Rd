@@ -11,26 +11,28 @@ phylomatic_local(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   cleanup = TRUE, path = "phylomatic-ws", ...)
 }
 \arguments{
-\item{taxa}{Phylomatic format input of taxa names.}
+\item{taxa}{(character) Phylomatic format input of taxa names.}
+
+\item{taxauri}{(character) URL of a taxa list online}
 
 \item{taxnames}{If \code{TRUE} (default), we get the family names for you to attach
 to your species names to send to Phylomatic API. If \code{FALSE}, you have to
 provide the strings in the right format.}
 
-\item{informat}{One of newick (default), nexml, or cdaordf. If using a stored tree,
+\item{informat}{(character) One of newick (default), nexml, or cdaordf. If using a stored tree,
 informat should always be newick.}
 
-\item{method}{One of phylomatic (default) or convert}
+\item{method}{(character) One of 'phylomatic' (default) or 'convert'}
 
-\item{storedtree}{One of R20120829 (Phylomatic tree R20120829 for plants),
+\item{storedtree}{(character) One of R20120829 (Phylomatic tree R20120829 for plants),
 smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
 mammals). Default: R20120829}
 
-\item{treeuri}{URL for a phylogenetic tree in newick format.}
+\item{treeuri}{(character) URL for a phylogenetic tree in newick format.}
 
-\item{taxaformat}{Only option is slashpath for now. Leave as is.}
+\item{taxaformat}{(character) Only option is slashpath for now. Leave as is.}
 
-\item{outformat}{One of newick, nexml, or fyt.}
+\item{outformat}{(character) One of newick, nexml, or fyt.}
 
 \item{clean}{(logical) Return a clean tree or not. Default: \code{true}}
 
