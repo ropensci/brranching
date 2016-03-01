@@ -57,16 +57,18 @@ it). Then give the path to that folder in the \code{path} parameter
 \dontrun{
 # Input taxonomic names
 taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
-tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws")
+(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 plot(tree, no.margin=TRUE)
 
 taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diffusa",
 "Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
-tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws")
+(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
+plot(tree, no.margin=TRUE)
 
 library("taxize")
-spp <- names_list("species", 6000)
-(tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws"))
+spp <- names_list("species", 1000)
+length(spp)
+(tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws", outfile="my.new"))
 }
 }
 

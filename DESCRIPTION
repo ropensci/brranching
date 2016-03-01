@@ -3,8 +3,8 @@ Title: Fetch 'Phylogenies' from Many Sources
 Description: Includes methods for fetching 'phylogenies' from a variety
     of sources, currently includes 'Phylomatic'
     (<http://phylodiversity.net/phylomatic>), with more in the future.
-Version: 0.1.0.9430
-Date: 2016-02-22
+Version: 0.1.1.9000
+Date: 2016-03-01
 Authors@R: person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com")
 License: MIT + file LICENSE
@@ -14,6 +14,7 @@ LazyLoad: yes
 LazyData: yes
 Imports:
     httr (>= 1.1.0),
+    curl,
     ape,
     taxize
 Suggests:

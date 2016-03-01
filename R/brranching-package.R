@@ -1,6 +1,7 @@
 #' Phylogenies from many sources
 #'
 #' @importFrom httr GET POST content stop_for_status
+#' @importFrom curl curl_escape
 #' @importFrom ape read.tree
 #' @importFrom taxize tax_name
 #' @name brranching-package

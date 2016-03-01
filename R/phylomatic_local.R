@@ -30,16 +30,18 @@
 #' @examples \dontrun{
 #' # Input taxonomic names
 #' taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
-#' tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws")
+#' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 #' plot(tree, no.margin=TRUE)
 #'
 #' taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diffusa",
 #' "Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
-#' tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws")
+#' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
+#' plot(tree, no.margin=TRUE)
 #'
 #' library("taxize")
-#' spp <- names_list("species", 6000)
-#' (tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws"))
+#' spp <- names_list("species", 1000)
+#' length(spp)
+#' (tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws", outfile="my.new"))
 #' }
 
 phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
@@ -51,9 +53,10 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   check_if("awk")
   check_if("gawk")
   check_pmws(path)
-  comment_lines(path)
+  #comment_lines(path)
 
   if (is.null(taxauri)) {
+    message("preparing names...")
     if (taxnames) {
       dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
       checknas <- sapply(dat_, function(x) strsplit(x, "/")[[1]][1])
@@ -71,6 +74,8 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
     if (length(dat_) > 1) {
       dat_ <- paste(dat_, collapse = "\n")
     }
+
+    dat_ <- curl::curl_escape(dat_)
   }
 
   # Only one of storedtree or treeuri
@@ -78,18 +83,31 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
 
   args <- cpt(list(taxa = dat_, taxauri = taxauri, informat = informat, method = method,
                    storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
-                   outformat = outformat, clean = clean))
+                   outformat = outformat, clean = clean, local = 1))
   argstr <- paste0(paste(names(args), args, sep = "="), collapse = "&")
 
   # process
   origpath <- getwd()
   setwd(path)
-  on.exit(setwd(origpath))
-  system(sprintf("echo '%s' | ./pmws > %s", argstr, outfile))
-  # read in output
-  out <- readLines(outfile)[3]
 
-  if (grepl("No taxa in common", out)) {
+  outfilepath <- file.path(path, outfile)
+  file.create(outfilepath)
+
+  datfile <- file.path(path, basename(tempfile(fileext = ".txt")))
+  file.create(datfile)
+  cat(argstr, file = datfile)
+
+  on.exit(unlink(outfilepath))
+  on.exit(unlink(datfile), add = TRUE)
+  on.exit(setwd(origpath), add = TRUE)
+
+  message("processing with phylomatic...")
+  system(sprintf("cat %s | ./pmws > %s", datfile, outfilepath))
+
+  # read in output
+  out <- readLines(outfilepath)[3]
+
+  if (grepl("No taxa in common|over 200kB", out)) {
     stop(out, call. = FALSE)
   } else {
     # parse out missing taxa note
@@ -101,7 +119,7 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
       taxa_na2 <- sapply(taxa_na2, function(x) strsplit(x, "/")[[1]][[3]], USE.NAMES = FALSE)
       taxa_na2 <- traits_capwords(gsub("_", " ", taxa_na2), onlyfirst = TRUE)
 
-      mssg(verbose, taxa_na)
+      mssg(verbose, get_note(taxa_na))
       out <- gsub("\\[NOTE:.+", ";\n", out)
     } else {
       taxa_na2 <- NULL
@@ -112,6 +130,11 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
            nexml = structure(out, class = "phylomatic", missing = taxa_na2),
            newick = structure(getnewick(out), class = c("phylo", "phylomatic"), missing = taxa_na2))
   }
+}
+
+get_note <- function(x) {
+  tmp <- substring(x, 1, 300)
+  if (nchar(x) > nchar(tmp)) paste0(tmp, " ...") else tmp
 }
 
 check_if <- function(x) {
