@@ -31,7 +31,7 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi"){
     } else {
       tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]
-      if (nchar(as.character(dd$that)) == 0) {
+      if (nchar(as.character(dd$that), keepNA = FALSE) == 0) {
         family <- dd$this
       } else {
         family <- dd$that
