@@ -7,7 +7,7 @@
 phylomatic_local(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   informat = "newick", method = "phylomatic", storedtree = "R20120829",
   treeuri = NULL, taxaformat = "slashpath", outformat = "newick",
-  clean = "true", db = "apg", verbose = TRUE, outfile = "out.new",
+  clean = TRUE, db = "apg", verbose = TRUE, outfile = "out.new",
   cleanup = TRUE, path = "phylomatic-ws", ...)
 }
 \arguments{
@@ -34,7 +34,7 @@ mammals). Default: R20120829}
 
 \item{outformat}{(character) One of newick, nexml, or fyt.}
 
-\item{clean}{(logical) Return a clean tree or not. Default: \code{true}}
+\item{clean}{(logical) Return a clean tree or not. Default: \code{TRUE}}
 
 \item{db}{(character) One of "ncbi", "itis", or "apg". Default: apg}
 
@@ -72,6 +72,13 @@ taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diff
 "Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
 (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 plot(tree, no.margin=TRUE)
+
+# Don't clean - clean=TRUE is default
+(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws", clean = FALSE))
+## with clean=FALSE, you can get non-splitting nodes, which you
+## need to collpase before plotting
+library('ape')
+plot(collapse.singles(tree), no.margin=TRUE)
 
 library("taxize")
 spp <- names_list("species", 1000)

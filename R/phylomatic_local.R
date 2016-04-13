@@ -15,7 +15,7 @@
 #' @param treeuri (character) URL for a phylogenetic tree in newick format.
 #' @param taxaformat (character) Only option is slashpath for now. Leave as is.
 #' @param outformat (character) One of newick, nexml, or fyt.
-#' @param clean (logical) Return a clean tree or not. Default: \code{true}
+#' @param clean (logical) Return a clean tree or not. Default: \code{TRUE}
 #' @param db (character) One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose (logical) Print messages. Default: \code{TRUE}
 #' @param outfile (character) output file for the tree, cleaned up after
@@ -42,6 +42,13 @@
 #' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 #' plot(tree, no.margin=TRUE)
 #'
+#' # Don't clean - clean=TRUE is default
+#' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws", clean = FALSE))
+#' ## with clean=FALSE, you can get non-splitting nodes, which you
+#' ## need to collpase before plotting
+#' library('ape')
+#' plot(collapse.singles(tree), no.margin=TRUE)
+#'
 #' library("taxize")
 #' spp <- names_list("species", 1000)
 #' length(spp)
@@ -50,7 +57,7 @@
 
 phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
-  taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg",
+  taxaformat = "slashpath", outformat = "newick", clean = TRUE, db="apg",
   verbose=TRUE, outfile = "out.new", cleanup = TRUE, path = "phylomatic-ws", ...) {
 
   # check for awk, gawk, and awk files
@@ -83,6 +90,9 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
 
   # Only one of storedtree or treeuri
   if (!is.null(treeuri)) storedtree <- NULL
+
+  # clean up the clean param
+  clean <- if (clean) "true" else "false"
 
   args <- cpt(list(taxa = dat_, taxauri = taxauri, informat = informat, method = method,
                    storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
@@ -131,7 +141,9 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
     outformat <- match.arg(outformat, choices = c("nexml",'newick'))
     switch(outformat,
            nexml = structure(out, class = "phylomatic", missing = taxa_na2),
-           newick = structure(getnewick(out), class = c("phylo", "phylomatic"), missing = taxa_na2))
+           newick = structure(phytools::read.newick(text = out),
+                              class = c("phylo", "phylomatic"),
+                              missing = taxa_na2))
   }
 }
 
