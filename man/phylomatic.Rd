@@ -6,7 +6,7 @@
 \usage{
 phylomatic(taxa, taxnames = TRUE, get = "GET", informat = "newick",
   method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
-  taxaformat = "slashpath", outformat = "newick", clean = "true",
+  taxaformat = "slashpath", outformat = "newick", clean = TRUE,
   db = "apg", verbose = TRUE, ...)
 }
 \arguments{
@@ -33,7 +33,7 @@ mammals). Default: R20120829}
 
 \item{outformat}{One of newick, nexml, or fyt.}
 
-\item{clean}{Return a clean tree or not. Default: \code{true}}
+\item{clean}{Return a clean tree or not. Default: \code{TRUE}}
 
 \item{db}{One of "ncbi", "itis", or "apg". Default: apg}
 
@@ -69,6 +69,13 @@ taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diff
 tree <- phylomatic(taxa=taxa, get = 'POST')
 plot(tree, no.margin=TRUE)
 
+# Don't clean - clean=TRUE is default
+(tree <- phylomatic(taxa=taxa, clean = FALSE))
+## with clean=FALSE, you can get non-splitting nodes, which you
+## need to collpase before plotting
+library('ape')
+plot(collapse.singles(tree), no.margin=TRUE)
+
 # Output NeXML format
 taxa <- c("Gonocarpus leptothecus", "Gonocarpus leptothecus", "Lilium lankongense")
 out <- phylomatic(taxa=taxa, get = 'POST', outformat = "nexml")
@@ -84,7 +91,6 @@ spp <- names_list("species", 5000)
 plot(out)
 
 # Pass in a tree from a URL on the web
-
 spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
 "Abies_numidica", "Abies_pinsapo", "Abies_alba")
 url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"

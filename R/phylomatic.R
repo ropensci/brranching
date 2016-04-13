@@ -15,7 +15,7 @@
 #' @param treeuri URL for a phylogenetic tree in newick format.
 #' @param taxaformat Only option is slashpath for now. Leave as is.
 #' @param outformat One of newick, nexml, or fyt.
-#' @param clean Return a clean tree or not. Default: \code{true}
+#' @param clean Return a clean tree or not. Default: \code{TRUE}
 #' @param db One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose Print messages. Default: \code{TRUE}
 #' @param ... curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
@@ -42,6 +42,13 @@
 #' tree <- phylomatic(taxa=taxa, get = 'POST')
 #' plot(tree, no.margin=TRUE)
 #'
+#' # Don't clean - clean=TRUE is default
+#' (tree <- phylomatic(taxa=taxa, clean = FALSE))
+#' ## with clean=FALSE, you can get non-splitting nodes, which you
+#' ## need to collpase before plotting
+#' library('ape')
+#' plot(collapse.singles(tree), no.margin=TRUE)
+#'
 #' # Output NeXML format
 #' taxa <- c("Gonocarpus leptothecus", "Gonocarpus leptothecus", "Lilium lankongense")
 #' out <- phylomatic(taxa=taxa, get = 'POST', outformat = "nexml")
@@ -57,7 +64,6 @@
 #' plot(out)
 #'
 #' # Pass in a tree from a URL on the web
-#'
 #' spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
 #' "Abies_numidica", "Abies_pinsapo", "Abies_alba")
 #' url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
@@ -66,7 +72,7 @@
 
 phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
-  taxaformat = "slashpath", outformat = "newick", clean = "true", db="apg",
+  taxaformat = "slashpath", outformat = "newick", clean = TRUE, db="apg",
   verbose=TRUE, ...) {
 
   if (taxnames) {
@@ -89,6 +95,9 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
 
   # Only one of storedtree or treeuri
   if (!is.null(treeuri)) storedtree <- NULL
+
+  # clean up the clean param
+  clean <- if (clean) "true" else "false"
 
   args <- cpt(list(taxa = dat_, informat = informat, method = method,
                        storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
@@ -128,13 +137,16 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
     }
 
     outformat <- match.arg(outformat, choices = c("nexml",'newick'))
-    getnewick <- function(x) {
-      tree <- gsub("\n", "", x[[1]])
-      read.tree(text = colldouble(tree))
-    }
 
     switch(outformat,
            nexml = structure(out, class = "phylomatic", missing = taxa_na2),
-           newick = structure(getnewick(out), class = c("phylo", "phylomatic"), missing = taxa_na2))
+           newick = structure(phytools::read.newick(text = out),
+                              class = c("phylo", "phylomatic"),
+                              missing = taxa_na2))
   }
 }
+
+# getnewick <- function(x) {
+#   tree <- gsub("\n", "", x[[1]])
+#   read.tree(text = colldouble(tree))
+# }

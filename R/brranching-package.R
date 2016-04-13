@@ -4,6 +4,7 @@
 #' @importFrom curl curl_escape
 #' @importFrom ape read.tree
 #' @importFrom taxize tax_name
+#' @importFrom phytools read.newick
 #' @name brranching-package
 #' @aliases brranching
 #' @docType package

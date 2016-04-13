@@ -17,7 +17,7 @@ collapse_double_root <- function(y) {
 }
 
 colldouble <- function(z) {
-  if ( class( try( read.tree(text = z), silent = T ) ) %in% 'try-error' ) {
+  if ( class( try( read.tree(text = z), silent = TRUE ) ) %in% 'try-error' ) {
     treephylo <- collapse_double_root(z)
   } else {
     treephylo <- z
