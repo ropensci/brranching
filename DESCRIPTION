@@ -19,5 +19,6 @@ Imports:
     taxize,
     phytools
 Suggests:
-    testthat
+    testthat,
+    covr
 RoxygenNote: 5.0.1
