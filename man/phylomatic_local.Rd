@@ -24,9 +24,9 @@ informat should always be newick.}
 
 \item{method}{(character) One of 'phylomatic' (default) or 'convert'}
 
-\item{storedtree}{(character) One of R20120829 (Phylomatic tree R20120829 for plants),
-smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
-mammals). Default: R20120829}
+\item{storedtree}{One of R20120829 (Phylomatic tree R20120829 for plants),
+smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
+mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
 \item{treeuri}{(character) URL for a phylogenetic tree in newick format.}
 

@@ -10,8 +10,8 @@
 #'    informat should always be newick.
 #' @param method One of phylomatic (default) or convert
 #' @param storedtree One of R20120829 (Phylomatic tree R20120829 for plants),
-#'    smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
-#'    mammals). Default: R20120829
+#'    smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
+#'    mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829
 #' @param treeuri URL for a phylogenetic tree in newick format.
 #' @param taxaformat Only option is slashpath for now. Leave as is.
 #' @param outformat One of newick, nexml, or fyt.

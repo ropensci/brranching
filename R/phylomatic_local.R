@@ -9,9 +9,9 @@
 #' @param informat (character) One of newick (default), nexml, or cdaordf. If using a stored tree,
 #'    informat should always be newick.
 #' @param method (character) One of 'phylomatic' (default) or 'convert'
-#' @param storedtree (character) One of R20120829 (Phylomatic tree R20120829 for plants),
-#'    smith2011 (Smith 2011, plants), or binindaemonds2007 (Bininda-Emonds 2007,
-#'    mammals). Default: R20120829
+#' @param storedtree One of R20120829 (Phylomatic tree R20120829 for plants),
+#'    smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
+#'    mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829
 #' @param treeuri (character) URL for a phylogenetic tree in newick format.
 #' @param taxaformat (character) Only option is slashpath for now. Leave as is.
 #' @param outformat (character) One of newick, nexml, or fyt.
