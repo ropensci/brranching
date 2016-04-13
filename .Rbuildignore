@@ -5,6 +5,5 @@ Makefile
 ^\.Rproj\.user$
 README.Rmd
 ^CONDUCT\.md$
-^NEWS\.md$
 ^cran-comments\.md$
 inst/img/
