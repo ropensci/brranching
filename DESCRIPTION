@@ -14,12 +14,13 @@ LazyData: yes
 Depends:
     R(>= 3.2.1)
 Imports:
-    httr (>= 1.1.0),
-    curl,
+    httr (>= 1.2.0),
+    curl (>= 1.2),
     ape,
     taxize,
     phytools
 Suggests:
+    roxygen2 (>= 5.0.1),
     testthat,
     covr
 RoxygenNote: 5.0.1
