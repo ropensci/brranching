@@ -14,13 +14,6 @@
 #' taxa <- names_list("species", 15)
 #' tree <- phylomatic(taxa=taxa, get = 'POST')
 #'
-#' # set path to where your dir is with phylocom executable, and optionally phylo
-#' # and/or ages files
-#' path = "path to phylocom executable directory"
-#' g <- rbladj(tree, path=path, fixroot=TRUE)
-#' g$edge.length
-#' plot(g)
-#'
 #' path <- "~/Mac/Courses_Rice/EcolJClub563/Fall10/phylometa_stuff/R_tutorial/bladjing/"
 #' (tree2 <- rbladj(tree, path = path, fixroot = TRUE))
 #' plot(tree)
