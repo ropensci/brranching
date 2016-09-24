@@ -2,7 +2,7 @@
 #'
 #' @importFrom httr GET POST content stop_for_status
 #' @importFrom curl curl_escape
-#' @importFrom ape read.tree
+#' @importFrom ape read.tree write.tree
 #' @importFrom taxize tax_name
 #' @importFrom phytools read.newick
 #' @name brranching-package
