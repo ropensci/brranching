@@ -2,15 +2,34 @@
 #'
 #' @export
 #' @param taxa (character) Phylomatic format input of taxa names.
-#' @param taxnames If \code{TRUE} (default), we get the family names for you
-#' to attach to your species names to send to Phylomatic API. If \code{FALSE},
-#' you have to provide the strings in the right format.
+#' @param taxauri (character) URL of a taxa list online
+#' @param taxnames If \code{TRUE} (default), we get the family names for
+#' you to attach to your species names to send to Phylomatic API. If
+#' \code{FALSE}, you have to provide the strings in the right format.
+#' @param informat (character) One of newick (default), nexml, or cdaordf.
+#' If using a stored tree, informat should always be newick.
+#' @param method (character) One of 'phylomatic' (default) or 'convert'
 #' @param storedtree One of R20120829 (Phylomatic tree R20120829 for plants),
 #'    smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
 #'    mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829
+#' @param treeuri (character) URL for a phylogenetic tree in newick format.
+#' @param taxaformat (character) Only option is slashpath for now. Leave as is.
+#' @param outformat (character) One of newick, nexml, or fyt.
+#' @param clean (logical) Return a clean tree or not. Default: \code{TRUE}
 #' @param db (character) One of "ncbi", "itis", or "apg". Default: apg
 #' @param verbose (logical) Print messages. Default: \code{TRUE}
 #' @param outfile (character) output file for the tree, cleaned up after
+#' @param cleanup (logical) Remove the output file. Default: \code{TRUE}
+#' @param path (character) Path to the \code{phylomatic-ws} folder
+#' @param ... curl options passed on to \code{\link[httr]{GET}} or
+#' \code{\link[httr]{POST}}
+#'
+#' @section Fetch Phylomatic code:
+#' Download the code by doing
+#' \code{git clone https://github.com/camwebb/phylomatic-ws}
+#' which will result in a folder \code{phylomatic-ws} (or download a zip
+#' file, and uncompress it). Then give the path to that folder in the
+#' \code{path} parameter
 #'
 #' @return Newick formatted tree as \code{phylo} object or
 #' nexml character string
@@ -21,13 +40,15 @@
 #' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 #' plot(tree, no.margin=TRUE)
 #'
-#' taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diffusa",
-#' "Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
-#' (tree <- phylomatic_local(taxa))
+#' taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense",
+#' "Phlox diffusa", "Iteadaphne caudata", "Gagea sarmentosa",
+#' "Helianthus annuus")
+#' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 #' plot(tree, no.margin=TRUE)
 #'
 #' # Don't clean - clean=TRUE is default
-#' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws", clean = FALSE))
+#' (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws",
+#'   clean = FALSE))
 #' ## with clean=FALSE, you can get non-splitting nodes, which you
 #' ## need to collpase before plotting
 #' library('ape')
@@ -36,70 +57,74 @@
 #' library("taxize")
 #' spp <- names_list("species", 1000)
 #' length(spp)
-#' (tree <- phylomatic_local(spp, outfile="my.new"))
+#' (tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws",
+#'   outfile="my.new"))
 #' }
 
-phylomatic_local <- function(taxa = NULL, taxnames = TRUE,
-  tree = "R20120829", taxaformat = "slashpath", outformat = "newick",
-  db="apg", verbose=TRUE, outfile = "out.new", cleanup = TRUE, ...) {
+phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
+  informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
+  taxaformat = "slashpath", outformat = "newick", clean = TRUE, db="apg",
+  verbose=TRUE, outfile = "out.new", cleanup = TRUE, path = "phylomatic-ws", ...) {
 
-  mssg(verbose, "preparing names...")
-  if (taxnames) {
-    dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
-    checknas <- sapply(dat_, function(x) strsplit(x, "/")[[1]][1])
-    checknas2 <- checknas[match("na", checknas)]
-    if (is.numeric(checknas2)) {
-      stop(sprintf("A family was not found for the following taxa:\n %s \n\n try setting taxnames=FALSE, and passing in a vector of strings, like \n%s",
-                   paste(sapply(dat_, function(x) strsplit(x, "/")[[1]][3])[match("na", checknas)], collapse = ", "),
-                   'phylomatic(taxa = c("asteraceae/taraxacum/taraxacum_officinale", "ericaceae/gaylussacia/gaylussacia_baccata", "ericaceae/vaccinium/vaccinium_pallidum"), taxnames=FALSE, parallel=FALSE)'
-      ))
+  # check for awk, gawk, and awk files
+  check_if("awk")
+  check_if("gawk")
+  check_pmws(path)
+
+  if (is.null(taxauri)) {
+    mssg(verbose, "preparing names...")
+    if (taxnames) {
+      dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
+      checknas <- sapply(dat_, function(x) strsplit(x, "/")[[1]][1])
+      checknas2 <- checknas[match("na", checknas)]
+      if (is.numeric(checknas2)) {
+        stop(sprintf("A family was not found for the following taxa:\n %s \n\n try setting taxnames=FALSE, and passing in a vector of strings, like \n%s",
+                     paste(sapply(dat_, function(x) strsplit(x, "/")[[1]][3])[match("na", checknas)], collapse = ", "),
+                     'phylomatic(taxa = c("asteraceae/taraxacum/taraxacum_officinale", "ericaceae/gaylussacia/gaylussacia_baccata", "ericaceae/vaccinium/vaccinium_pallidum"), taxnames=FALSE, parallel=FALSE)'
+        ))
+      }
+    } else {
+      dat_ <- taxa
     }
-  } else {
-    dat_ <- taxa
+
+    if (length(dat_) > 1) {
+      dat_ <- paste(dat_, collapse = "\n")
+    }
+
+    dat_ <- curl::curl_escape(dat_)
   }
 
-  # if (length(dat_) > 1) {
-  #   dat_ <- paste(dat_, collapse = "\n")
-  # }
+  # Only one of storedtree or treeuri
+  if (!is.null(treeuri)) storedtree <- NULL
 
-  # dat_ <- curl::curl_escape(dat_)
+  # clean up the clean param
+  clean <- if (clean) "true" else "false"
 
-  # # Only one of storedtree or treeuri
-  # if (!is.null(treeuri)) storedtree <- NULL
-  #
-  # # clean up the clean param
-  # clean <- if (clean) "true" else "false"
-  #
-  # args <- cpt(list(taxa = dat_, taxauri = taxauri, informat = informat, method = method,
-  #                  storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
-  #                  outformat = outformat, clean = clean, local = 1))
-  # argstr <- paste0(paste(names(args), args, sep = "="), collapse = "&")
+  args <- cpt(list(taxa = dat_, taxauri = taxauri, informat = informat, method = method,
+                   storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
+                   outformat = outformat, clean = clean, local = 1))
+  argstr <- paste0(paste(names(args), args, sep = "="), collapse = "&")
 
-  # # process
-  # origpath <- getwd()
-  # setwd(path)
-  #
-  # outfilepath <- file.path(path, outfile)
-  # file.create(outfilepath)
-  #
-  # datfile <- file.path(path, basename(tempfile(fileext = ".txt")))
-  # file.create(datfile)
-  # cat(argstr, file = datfile)
-  #
-  # if (cleanup) on.exit(unlink(outfilepath))
-  # on.exit(unlink(datfile), add = TRUE)
-  # on.exit(setwd(origpath), add = TRUE)
-  #
-  # mssg(verbose, "processing with phylomatic...")
-  # system(sprintf("cat %s | ./pmws > %s", datfile, outfilepath))
-  #
-  # # read in output
-  # out <- readLines(outfilepath)[3]
+  # process
+  origpath <- getwd()
+  setwd(path)
 
-  if (tree %in% names(phylomatic_trees)) {
-    tree <- phylomatic_trees[[tree]]
-  }
-  out <- phylocom::ph_phylomatic(taxa = dat_, phylo = tree)
+  outfilepath <- file.path(path, outfile)
+  file.create(outfilepath)
+
+  datfile <- file.path(path, basename(tempfile(fileext = ".txt")))
+  file.create(datfile)
+  cat(argstr, file = datfile)
+
+  if (cleanup) on.exit(unlink(outfilepath))
+  on.exit(unlink(datfile), add = TRUE)
+  on.exit(setwd(origpath), add = TRUE)
+
+  mssg(verbose, "processing with phylomatic...")
+  system(sprintf("cat %s | ./pmws > %s", datfile, outfilepath))
+
+  # read in output
+  out <- readLines(outfilepath)[3]
 
   if (grepl("No taxa in common|over 200kB", out)) {
     stop(out, call. = FALSE)
@@ -119,16 +144,12 @@ phylomatic_local <- function(taxa = NULL, taxnames = TRUE,
       taxa_na2 <- NULL
     }
 
-    structure(phytools::read.newick(text = out),
-              class = c("phylo", "phylomatic"),
-              missing = taxa_na2)
-
-    #outformat <- match.arg(outformat, choices = c("nexml",'newick'))
-    #switch(outformat,
-           # nexml = structure(out, class = "phylomatic", missing = taxa_na2),
-           # newick = structure(phytools::read.newick(text = out),
-           #                    class = c("phylo", "phylomatic"),
-           #                    missing = taxa_na2))
+    outformat <- match.arg(outformat, choices = c("nexml",'newick'))
+    switch(outformat,
+           nexml = structure(out, class = "phylomatic", missing = taxa_na2),
+           newick = structure(phytools::read.newick(text = out),
+                              class = c("phylo", "phylomatic"),
+                              missing = taxa_na2))
   }
 }
 

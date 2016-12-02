@@ -18,7 +18,8 @@ Imports:
     curl (>= 1.2),
     ape,
     taxize,
-    phytools
+    phytools,
+    phylocom
 Suggests:
     roxygen2 (>= 5.0.1),
     testthat,

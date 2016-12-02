@@ -15,12 +15,12 @@ phylomatic_local(taxa = NULL, taxauri = NULL, taxnames = TRUE,
 
 \item{taxauri}{(character) URL of a taxa list online}
 
-\item{taxnames}{If \code{TRUE} (default), we get the family names for you to attach
-to your species names to send to Phylomatic API. If \code{FALSE}, you have to
-provide the strings in the right format.}
+\item{taxnames}{If \code{TRUE} (default), we get the family names for
+you to attach to your species names to send to Phylomatic API. If
+\code{FALSE}, you have to provide the strings in the right format.}
 
-\item{informat}{(character) One of newick (default), nexml, or cdaordf. If using a stored tree,
-informat should always be newick.}
+\item{informat}{(character) One of newick (default), nexml, or cdaordf.
+If using a stored tree, informat should always be newick.}
 
 \item{method}{(character) One of 'phylomatic' (default) or 'convert'}
 
@@ -46,7 +46,8 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
 \item{path}{(character) Path to the \code{phylomatic-ws} folder}
 
-\item{...}{curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}}
+\item{...}{curl options passed on to \code{\link[httr]{GET}} or
+\code{\link[httr]{POST}}}
 }
 \value{
 Newick formatted tree as \code{phylo} object or
@@ -57,9 +58,11 @@ Use Phylomatic locally - ideal for large queries
 }
 \section{Fetch Phylomatic code}{
 
-Download the code by doing \code{git clone https://github.com/camwebb/phylomatic-ws}
-which will result in a folder \code{phylomatic-ws} (or download a zip file, and uncompress
-it). Then give the path to that folder in the \code{path} parameter
+Download the code by doing
+\code{git clone https://github.com/camwebb/phylomatic-ws}
+which will result in a folder \code{phylomatic-ws} (or download a zip
+file, and uncompress it). Then give the path to that folder in the
+\code{path} parameter
 }
 \examples{
 \dontrun{
@@ -68,13 +71,15 @@ taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
 (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 plot(tree, no.margin=TRUE)
 
-taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diffusa",
-"Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
+taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense",
+"Phlox diffusa", "Iteadaphne caudata", "Gagea sarmentosa",
+"Helianthus annuus")
 (tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
 plot(tree, no.margin=TRUE)
 
 # Don't clean - clean=TRUE is default
-(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws", clean = FALSE))
+(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws",
+  clean = FALSE))
 ## with clean=FALSE, you can get non-splitting nodes, which you
 ## need to collpase before plotting
 library('ape')
@@ -83,7 +88,8 @@ plot(collapse.singles(tree), no.margin=TRUE)
 library("taxize")
 spp <- names_list("species", 1000)
 length(spp)
-(tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws", outfile="my.new"))
+(tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws",
+  outfile="my.new"))
 }
 }
 
