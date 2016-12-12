@@ -15,7 +15,7 @@
 #' nexml character string
 #'
 #' @details This function uses Phylomatic via Phylocom using the
-#' \pkg{phylocom} package. The interface is slightly different: there's no
+#' \pkg{phylocomr} package. The interface is slightly different: there's no
 #' tree by URL avaialable, and some of the parameters are not included here.
 #'
 #' @examples \dontrun{
@@ -62,7 +62,7 @@ phylomatic_local2 <- function(taxa = NULL, taxnames = TRUE, storedtree = "R20120
     tree <- phylomatic_trees[[tree]]
   }
   mssg(verbose, "processing with phylomatic...")
-  out <- phylocom::ph_phylomatic(taxa = dat_, phylo = tree)
+  out <- phylocomr::ph_phylomatic(taxa = dat_, phylo = tree)
 
   if (grepl("No taxa in common|over 200kB", out)) {
     stop(out, call. = FALSE)

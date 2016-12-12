@@ -19,9 +19,10 @@ Imports:
     ape,
     taxize,
     phytools,
-    phylocom
+    phylocomr
 Suggests:
     roxygen2 (>= 5.0.1),
     testthat,
     covr
+Remotes: ropensci/phylocomr
 RoxygenNote: 5.0.1

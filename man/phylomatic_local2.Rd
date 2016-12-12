@@ -31,7 +31,7 @@ Use Phylomatic locally - ideal for large queries
 }
 \details{
 This function uses Phylomatic via Phylocom using the
-\pkg{phylocom} package. The interface is slightly different: there's no
+\pkg{phylocomr} package. The interface is slightly different: there's no
 tree by URL avaialable, and some of the parameters are not included here.
 }
 \examples{
