@@ -40,8 +40,8 @@
 #' (tree <- phylomatic_local2(spp))
 #' }
 
-phylomatic_local2 <- function(taxa = NULL, taxnames = TRUE, storedtree = "R20120829",
-                             db = "apg", verbose = TRUE) {
+phylomatic_local2 <- function(taxa = NULL, taxnames = TRUE,
+  storedtree = "R20120829", db = "apg", verbose = TRUE) {
 
   mssg(verbose, "preparing names...")
   if (taxnames) {
@@ -58,8 +58,8 @@ phylomatic_local2 <- function(taxa = NULL, taxnames = TRUE, storedtree = "R20120
     dat_ <- taxa
   }
 
-  if (tree %in% names(phylomatic_trees)) {
-    tree <- phylomatic_trees[[tree]]
+  if (storedtree %in% names(phylomatic_trees)) {
+    tree <- phylomatic_trees[[storedtree]]
   }
   mssg(verbose, "processing with phylomatic...")
   out <- phylocomr::ph_phylomatic(taxa = dat_, phylo = tree)
