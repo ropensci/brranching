@@ -9,6 +9,10 @@
 #'    smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
 #'    mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829
 #' @param db (character) One of "ncbi", "itis", or "apg". Default: apg
+#' @param lowercase	(logical) Convert all chars in taxa file to lowercase.
+#' Default: \code{FALSE}
+#' @param nodes (logical) label all nodes with default names.
+#' Default: \code{FALSE}
 #' @param verbose (logical) Print messages. Default: \code{TRUE}
 #'
 #' @return Newick formatted tree as \code{phylo} object or

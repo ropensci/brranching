@@ -20,6 +20,12 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
 \item{db}{(character) One of "ncbi", "itis", or "apg". Default: apg}
 
+\item{lowercase}{(logical) Convert all chars in taxa file to lowercase.
+Default: \code{FALSE}}
+
+\item{nodes}{(logical) label all nodes with default names.
+Default: \code{FALSE}}
+
 \item{verbose}{(logical) Print messages. Default: \code{TRUE}}
 }
 \value{
