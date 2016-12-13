@@ -31,6 +31,12 @@
 #' file, and uncompress it). Then give the path to that folder in the
 #' \code{path} parameter
 #'
+#' @details
+#' If you set \code{taxnames = FALSE}, you need to pass in a character
+#' vector, with each element like this example:
+#' \code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
+#' \code{"family/genus/genus_specfic epithet"}
+#'
 #' @return Newick formatted tree as \code{phylo} object or
 #' nexml character string
 #'

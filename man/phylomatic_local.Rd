@@ -56,6 +56,12 @@ nexml character string
 \description{
 Use Phylomatic locally - ideal for large queries
 }
+\details{
+If you set \code{taxnames = FALSE}, you need to pass in a character
+vector, with each element like this example:
+\code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
+\code{"family/genus/genus_specfic epithet"}
+}
 \section{Fetch Phylomatic code}{
 
 Download the code by doing

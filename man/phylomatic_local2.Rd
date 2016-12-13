@@ -5,14 +5,14 @@
 \title{Use Phylomatic locally - ideal for large queries}
 \usage{
 phylomatic_local2(taxa = NULL, taxnames = TRUE, storedtree = "R20120829",
-  db = "apg", verbose = TRUE)
+  db = "apg", lowercase = FALSE, nodes = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{taxa}{(character) Phylomatic format input of taxa names.}
 
 \item{taxnames}{If \code{TRUE} (default), we get the family names for you
 to attach to your species names to send to Phylomatic API. If \code{FALSE},
-you have to provide the strings in the right format.}
+you have to provide the strings in the right format. See Details.}
 
 \item{storedtree}{One of R20120829 (Phylomatic tree R20120829 for plants),
 smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
@@ -33,6 +33,11 @@ Use Phylomatic locally - ideal for large queries
 This function uses Phylomatic via Phylocom using the
 \pkg{phylocomr} package. The interface is slightly different: there's no
 tree by URL avaialable, and some of the parameters are not included here.
+
+If you set \code{taxnames = FALSE}, you need to pass in a character
+vector, with each element like this example:
+\code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
+\code{"family/genus/genus_specfic epithet"}
 }
 \examples{
 \dontrun{
@@ -52,7 +57,7 @@ plot(collapse.singles(tree), no.margin=TRUE)
 plot(collapse.singles(tree), no.margin=TRUE)
 
 library("taxize")
-spp <- names_list("species", 1000)
+spp <- names_list("species", 500)
 length(spp)
 (tree <- phylomatic_local2(spp))
 }

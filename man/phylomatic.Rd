@@ -50,6 +50,11 @@ Query Phylomatic for a phylogenetic tree.
 }
 \details{
 Use the web interface at \url{http://phylodiversity.net/phylomatic/}
+
+If you set \code{taxnames = FALSE}, you need to pass in a character
+vector, with each element like this example:
+\code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
+\code{"family/genus/genus_specfic epithet"}
 }
 \examples{
 \dontrun{
