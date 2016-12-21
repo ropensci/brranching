@@ -15,6 +15,7 @@ environment:
     WARNINGS_ARE_ERRORS: 1
     USE_RTOOLS: true
     R_QPDF: true
+    R_CHECK_ARGS: "--no-manual --as-cran --run-dontrun"
 
 build_script:
   - travis-tool.sh install_github ropensci/phylocomr
