@@ -80,12 +80,13 @@ phylomatic_local2 <- function(taxa = NULL, taxnames = TRUE,
   mssg(verbose, "processing with phylomatic...")
   out <- phylocomr::ph_phylomatic(taxa = dat_, phylo = tree,
                                   lowercase = lowercase, nodes = nodes)
+  out <- iconv(out, from = "ISO_8859-2", to = "UTF-8")
 
-  if (grepl("No taxa in common|over 200kB", out)) {
+  if (suppressWarnings(grepl("No taxa in common|over 200kB", out))) {
     stop(out, call. = FALSE)
   } else {
     # parse out missing taxa note
-    if (grepl("\\[NOTE: ", out)) {
+    if (suppressWarnings(grepl("\\[NOTE: ", out))) {
       taxa_na <- strmatch(out, "NOTE:.+")
       taxa_na2 <- strmatch(taxa_na, ":\\s[A-Za-z].+")
       taxa_na2 <-

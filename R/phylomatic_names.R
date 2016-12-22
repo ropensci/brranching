@@ -23,6 +23,7 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi"){
 
   foo <- function(nnn) {
     # split up strings if a species name
+    nnn <- iconv(nnn, from = "ISO_8859-2", to = "UTF-8")
     taxa2 <- strsplit(gsub("_"," ",nnn), "\\s")[[1]]
     taxa_genus <- traits_capwords(taxa2[[1]], onlyfirst = TRUE)
 
