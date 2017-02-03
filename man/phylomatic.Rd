@@ -90,7 +90,7 @@ cat(out)
 # names, so there's no per se rule), you will get an error when using \\code{get='GET'},
 # when that happens use \\code{get='POST'}
 library("taxize")
-spp <- names_list("species", 5000)
+spp <- names_list("species", 500)
 # phylomatic(taxa = spp, get = "GET")
 (out <- phylomatic(taxa = spp, get = "POST"))
 plot(out)
