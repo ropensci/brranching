@@ -19,7 +19,7 @@ Imports:
     ape,
     taxize,
     phytools,
-    phylocomr
+    phylocomr (>= 0.0.8.9210)
 Suggests:
     roxygen2 (>= 5.0.1),
     testthat,
