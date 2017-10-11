@@ -7,3 +7,5 @@ README.Rmd
 ^CONDUCT\.md$
 ^cran-comments\.md$
 inst/img/
+.github
+
