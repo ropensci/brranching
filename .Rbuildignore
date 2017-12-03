@@ -9,3 +9,4 @@ README.Rmd
 inst/img/
 .github
 
+^codemeta\.json$
