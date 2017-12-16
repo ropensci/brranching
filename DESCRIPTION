@@ -3,7 +3,7 @@ Title: Fetch 'Phylogenies' from Many Sources
 Description: Includes methods for fetching 'phylogenies' from a variety
     of sources, currently includes 'Phylomatic'
     (<http://phylodiversity.net/phylomatic>), with more in the future.
-Version: 0.2.1.9100
+Version: 0.2.3.9110
 Authors@R: c(
     person("Scott", "Chamberlain",
         role = c("aut", "cre"),
@@ -11,7 +11,7 @@ Authors@R: c(
         comment = c(ORCID = "orcid.org/0000-0003-1444-9135")))
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/brranching
-BugReports: http://www.github.com/ropensci/brranching/issues
+BugReports: http://github.com/ropensci/brranching/issues
 LazyLoad: yes
 LazyData: yes
 Depends:
@@ -23,9 +23,7 @@ Imports:
     taxize,
     phytools
 Suggests:
-    roxygen2 (>= 5.0.1),
-    testthat,
-    covr
+    testthat
 RoxygenNote: 5.0.1
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-applicationCategory: Data Access
