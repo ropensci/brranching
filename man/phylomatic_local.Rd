@@ -45,9 +45,12 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 \item{cleanup}{(logical) Remove the output file. Default: \code{TRUE}}
 
 \item{path}{(character) Path to the \code{phylomatic-ws} folder}
+<<<<<<< HEAD
 
 \item{...}{curl options passed on to \code{\link[httr]{GET}} or
 \code{\link[httr]{POST}}}
+=======
+>>>>>>> master
 }
 \value{
 Newick formatted tree as \code{phylo} object or
@@ -70,6 +73,7 @@ which will result in a folder \code{phylomatic-ws} (or download a zip
 file, and uncompress it). Then give the path to that folder in the
 \code{path} parameter
 }
+
 \examples{
 \dontrun{
 # Input taxonomic names
@@ -98,4 +102,3 @@ length(spp)
   outfile="my.new"))
 }
 }
-

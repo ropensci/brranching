@@ -18,4 +18,3 @@ on 2015-11-11, and are from version 1.1 of their data. This data is
 used in the function \code{\link{phylomatic_names}}.
 }
 \keyword{data}
-
