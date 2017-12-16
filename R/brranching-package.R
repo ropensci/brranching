@@ -1,6 +1,6 @@
 #' Phylogenies from many sources
 #'
-#' @importFrom httr GET POST content stop_for_status
+#' @importFrom crul HttpClient
 #' @importFrom curl curl_escape
 #' @importFrom ape read.tree write.tree
 #' @importFrom taxize tax_name

@@ -3,7 +3,7 @@ Title: Fetch 'Phylogenies' from Many Sources
 Description: Includes methods for fetching 'phylogenies' from a variety
     of sources, currently includes 'Phylomatic'
     (<http://phylodiversity.net/phylomatic>), with more in the future.
-Version: 0.2.3.9110
+Version: 0.2.4.9110
 Authors@R: c(
     person("Scott", "Chamberlain",
         role = c("aut", "cre"),
@@ -17,14 +17,14 @@ LazyData: yes
 Depends:
     R(>= 3.2.1)
 Imports:
-    httr (>= 1.2.0),
+    crul (>= 0.4.0),
     curl (>= 1.2),
     ape,
     taxize,
     phytools
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-applicationCategory: Data Access
 X-schema.org-isPartOf: "https://ropensci.org"

@@ -30,4 +30,3 @@ phylomatic_names(mynames, format='isubmit', db="ncbi")
 phylomatic_names(mynames, format='isubmit', db="apg")
 }
 }
-

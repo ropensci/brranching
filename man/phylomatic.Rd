@@ -7,7 +7,7 @@
 phylomatic(taxa, taxnames = TRUE, get = "GET", informat = "newick",
   method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
   taxaformat = "slashpath", outformat = "newick", clean = TRUE,
-  db = "apg", verbose = TRUE, ...)
+  db = "apg", mssgs = TRUE, ...)
 }
 \arguments{
 \item{taxa}{Phylomatic format input of taxa names.}
@@ -37,9 +37,9 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
 \item{db}{One of "ncbi", "itis", or "apg". Default: apg}
 
-\item{verbose}{Print messages. Default: \code{TRUE}}
+\item{mssgs}{Print messages. Default: \code{TRUE}}
 
-\item{...}{curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}}
+\item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
 }
 \value{
 Newick formatted tree as \code{phylo} object or
@@ -97,4 +97,3 @@ url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?se
 phylomatic(taxa=spp, treeuri=url)
 }
 }
-

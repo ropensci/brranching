@@ -2,8 +2,8 @@
 % Please edit documentation in R/brranching-package.R
 \docType{package}
 \name{brranching-package}
-\alias{brranching}
 \alias{brranching-package}
+\alias{brranching}
 \title{Phylogenies from many sources}
 \description{
 Phylogenies from many sources
@@ -12,4 +12,3 @@ Phylogenies from many sources
 Scott Chamberlain <myrmecocystus@gmail.com>
 }
 \keyword{package}
-

@@ -21,7 +21,6 @@
 #' @param outfile (character) output file for the tree, cleaned up after
 #' @param cleanup (logical) Remove the output file. Default: \code{TRUE}
 #' @param path (character) Path to the \code{phylomatic-ws} folder
-#' @param ... curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
 #'
 #' @section Fetch Phylomatic code:
 #' Download the code by doing \code{git clone https://github.com/camwebb/phylomatic-ws}

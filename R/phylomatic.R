@@ -17,8 +17,8 @@
 #' @param outformat One of newick, nexml, or fyt.
 #' @param clean Return a clean tree or not. Default: \code{TRUE}
 #' @param db One of "ncbi", "itis", or "apg". Default: apg
-#' @param verbose Print messages. Default: \code{TRUE}
-#' @param ... curl options passed on to \code{\link[httr]{GET}} or \code{\link[httr]{POST}}
+#' @param mssgs Print messages. Default: \code{TRUE}
+#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
 #'
 #' @details Use the web interface at \url{http://phylodiversity.net/phylomatic/}
 #'
@@ -73,7 +73,7 @@
 phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
   taxaformat = "slashpath", outformat = "newick", clean = TRUE, db="apg",
-  verbose=TRUE, ...) {
+  mssgs=TRUE, ...) {
 
   if (taxnames) {
     dat_ <- phylomatic_names(taxa, format = 'isubmit', db = db)
@@ -103,17 +103,18 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
                        storedtree = storedtree, treeuri = treeuri, taxaformat = taxaformat,
                        outformat = outformat, clean = clean))
 
+  cli <- crul::HttpClient$new(url = phylo_base, opts = list(...))
   if (get == 'POST') {
-    tt <- POST(phylo_base, body = args, encode = 'form', ...)
-    out <- content(tt, as = "text", encoding = "UTF-8")
+    tt <- cli$post(body = args, encode = 'form')
+    out <- tt$parse("UTF-8")
   } else if (get == 'GET') {
-    tt <- GET(phylo_base, query = args, ...)
+    tt <- cli$get(query = args)
     if (tt$status_code == 414) {
       stop("(414) Request-URI Too Long - Use get='POST' in your function call", call. = FALSE)
     } else {
-      stop_for_status(tt)
+      tt$raise_for_status()
     }
-    out <- content(tt, as = "text", encoding = "UTF-8")
+    out <- tt$parse("UTF-8") 
   } else {
     stop("get must be one of 'POST' or 'GET'", call. = FALSE)
   }
@@ -130,7 +131,7 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
       taxa_na2 <- sapply(taxa_na2, function(x) strsplit(x, "/")[[1]][[3]], USE.NAMES = FALSE)
       taxa_na2 <- traits_capwords(gsub("_", " ", taxa_na2), onlyfirst = TRUE)
 
-      mssg(verbose, taxa_na)
+      mssg(mssgs, taxa_na)
       out <- gsub("\\[NOTE:.+", ";\n", out)
     } else {
       taxa_na2 <- NULL
@@ -146,7 +147,3 @@ phylomatic <- function(taxa, taxnames = TRUE, get = 'GET',
   }
 }
 
-# getnewick <- function(x) {
-#   tree <- gsub("\n", "", x[[1]])
-#   read.tree(text = colldouble(tree))
-# }
