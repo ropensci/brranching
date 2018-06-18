@@ -4,7 +4,7 @@ Makefile
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
-^CONDUCT\.md$
+^CODE_OF_CONDUCT\.md$
 ^cran-comments\.md$
 inst/img/
 .github
