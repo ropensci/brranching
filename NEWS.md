@@ -1,3 +1,17 @@
+brranching 0.3.0
+================
+
+### NEW FEATURES
+
+* gains new function `bladj`  (#18)
+* replaced `httr` with `crul` for http requests (#25)
+
+### MINOR IMPROVEMENTS
+
+* fix links to readme images (#29) (#26)
+* `verbose` param in `phylomatic()` function changed to `mssgs`
+
+
 brranching 0.2.0
 ================
 
