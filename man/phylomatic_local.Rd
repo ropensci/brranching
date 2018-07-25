@@ -45,12 +45,6 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 \item{cleanup}{(logical) Remove the output file. Default: \code{TRUE}}
 
 \item{path}{(character) Path to the \code{phylomatic-ws} folder}
-<<<<<<< HEAD
-
-\item{...}{curl options passed on to \code{\link[httr]{GET}} or
-\code{\link[httr]{POST}}}
-=======
->>>>>>> master
 }
 \value{
 Newick formatted tree as \code{phylo} object or

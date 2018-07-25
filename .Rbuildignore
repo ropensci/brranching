@@ -9,3 +9,4 @@ README.Rmd
 inst/img/
 appveyor.yml
 ^codemeta\.json$
+.github

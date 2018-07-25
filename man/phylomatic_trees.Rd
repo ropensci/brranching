@@ -18,4 +18,3 @@ phylocom
 Phylogenies to use with phylomatic
 }
 \keyword{data}
-

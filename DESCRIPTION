@@ -22,7 +22,7 @@ Imports:
     ape,
     taxize,
     phytools,
-    phylocomr (>= 0.0.8.9210)
+    phylocomr (>= 0.1.0)
 Suggests:
     testthat
 Remotes: ropensci/phylocomr
