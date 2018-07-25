@@ -68,7 +68,7 @@
 phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   informat = "newick", method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
   taxaformat = "slashpath", outformat = "newick", clean = TRUE, db="apg",
-  verbose=TRUE, outfile = "out.new", cleanup = TRUE, path = "phylomatic-ws", ...) {
+  verbose=TRUE, outfile = "out.new", cleanup = TRUE, path = "phylomatic-ws") {
 
   # check for awk, gawk, and awk files
   check_if("awk")
@@ -113,10 +113,10 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   origpath <- getwd()
   setwd(path)
 
-  outfilepath <- file.path(path, outfile)
+  outfilepath <- file.path(outfile)
   file.create(outfilepath)
 
-  datfile <- file.path(path, basename(tempfile(fileext = ".txt")))
+  datfile <- basename(tempfile(fileext = ".txt"))
   file.create(datfile)
   cat(argstr, file = datfile)
 

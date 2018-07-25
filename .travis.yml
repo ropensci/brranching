@@ -3,17 +3,19 @@ sudo: false
 cache: packages
 
 r_github_packages:
-  - jimhester/covr
 
+- jimhester/covr
 after_success:
-  - Rscript -e 'covr::codecov()'
+- Rscript -e 'covr::codecov()'
 
 env:
-   global:
-     - R_BUILD_ARGS="--no-manual"
-     - R_CHECK_ARGS="--as-cran --no-manual"
+  global:
+  - R_BUILD_ARGS="--no-manual"
+  - R_CHECK_ARGS="--as-cran --no-manual"
 
 notifications:
- email:
-   on_success: never
-   on_failure: never
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    secure: EoVRLjPy03haHj47+gsLT6Ih0IddXOJg7Qo9Yfj2JXAMouqX4Qwmms80jXNL48BYLC1IYyHAXKsktNiDk4+dtBrv4FdvIsQdNdYvf/FWHFNNmnxC07jWc5BB38zxtZKM0u8GaOHWQ4rkrljnXNOIkP8JrDGJ5C3XIaKo2Er4PTA=

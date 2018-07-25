@@ -8,7 +8,7 @@ phylomatic_local(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   informat = "newick", method = "phylomatic", storedtree = "R20120829",
   treeuri = NULL, taxaformat = "slashpath", outformat = "newick",
   clean = TRUE, db = "apg", verbose = TRUE, outfile = "out.new",
-  cleanup = TRUE, path = "phylomatic-ws", ...)
+  cleanup = TRUE, path = "phylomatic-ws")
 }
 \arguments{
 \item{taxa}{(character) Phylomatic format input of taxa names.}
