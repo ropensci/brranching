@@ -102,10 +102,10 @@ phylomatic_local <- function(taxa = NULL, taxauri = NULL, taxnames = TRUE,
   origpath <- getwd()
   setwd(path)
 
-  outfilepath <- file.path(path, outfile)
+  outfilepath <- file.path(outfile)
   file.create(outfilepath)
 
-  datfile <- file.path(path, basename(tempfile(fileext = ".txt")))
+  datfile <- basename(tempfile(fileext = ".txt"))
   file.create(datfile)
   cat(argstr, file = datfile)
 
