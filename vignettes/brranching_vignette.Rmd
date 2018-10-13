@@ -1,0 +1,69 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{brranching vignette}
+%\VignetteEncoding{UTF-8}
+-->
+
+brranching - an interface to phylogenetic data
+======
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.path="tools/img/"
+)
+```
+
+## Description
+
+Brranching is an interface to many different sources of phylogenetic data (currently only from [Phylomatic](http://phylodiversity.net/phylomatic/), but more sources to come). It is used to query for phylogenetic data using taxonomic names and can be used to visualise the evolutionary history and relationships among individuals or groups of organisms. 
+
+## Installation
+
+Stable CRAN version
+
+```{r eval=FALSE}
+install.packages("brranching")
+```
+
+Or dev version
+
+```{r eval=FALSE}
+install.packages("devtools")
+devtools::install_github("ropensci/brranching")
+```
+
+```{r}
+library("brranching")
+```
+
+## Phylomatic
+
+Query Phylomatic for a phylogenetic tree.
+
+```{r}
+taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
+tree <- phylomatic(taxa=taxa, get = 'POST')
+plot(tree, no.margin=TRUE)
+```
+
+You can pass in up to about 5000 names. We can use [`taxize`](https://github.com/ropensci/taxize/) to get a random set of plant species names.
+
+```{r}
+library("taxize")
+spp <- names_list("species", 200)
+out <- phylomatic(taxa = spp, get = "POST")
+plot(out, show.tip.label = FALSE)
+```
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropensci/brranching/issues).
+* License: MIT
+* Get citation information for `brranching` in R doing `citation(package = 'brranching')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
