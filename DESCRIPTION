@@ -1,8 +1,9 @@
 Package: brranching
 Title: Fetch 'Phylogenies' from Many Sources
 Description: Includes methods for fetching 'phylogenies' from a variety
-    of sources, currently includes 'Phylomatic'
-    (<http://phylodiversity.net/phylomatic>), with more in the future.
+    of sources, including the 'Phylomatic' web service 
+    (<http://phylodiversity.net/phylomatic>), and Phylocom 
+    (<https://github.com/phylocom/phylocom/>).
 Version: 0.3.0.9100
 Authors@R: c(
     person("Scott", "Chamberlain",
