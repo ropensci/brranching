@@ -4,84 +4,68 @@
 \alias{phylomatic_local}
 \title{Use Phylomatic locally - ideal for large queries}
 \usage{
-phylomatic_local(taxa = NULL, taxauri = NULL, taxnames = TRUE,
-  informat = "newick", method = "phylomatic", storedtree = "R20120829",
-  treeuri = NULL, taxaformat = "slashpath", outformat = "newick",
-  clean = TRUE, db = "apg", verbose = TRUE, outfile = "out.new",
-  cleanup = TRUE, path = "phylomatic-ws")
+phylomatic_local(taxa = NULL, taxnames = TRUE,
+  storedtree = "R20120829", db = "apg", lowercase = FALSE,
+  nodes = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{taxa}{(character) Phylomatic format input of taxa names.}
 
-\item{taxauri}{(character) URL of a taxa list online}
-
-\item{taxnames}{If \code{TRUE} (default), we get the family names for you to attach
-to your species names to send to Phylomatic API. If \code{FALSE}, you have to
-provide the strings in the right format.}
-
-\item{informat}{(character) One of newick (default), nexml, or cdaordf. If using a stored tree,
-informat should always be newick.}
-
-\item{method}{(character) One of 'phylomatic' (default) or 'convert'}
+\item{taxnames}{If \code{TRUE} (default), we get the family names for you
+to attach to your species names to send to Phylomatic API. If \code{FALSE},
+you have to provide the strings in the right format. See Details.}
 
 \item{storedtree}{One of R20120829 (Phylomatic tree R20120829 for plants),
 smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
 mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
-\item{treeuri}{(character) URL for a phylogenetic tree in newick format.}
-
-\item{taxaformat}{(character) Only option is slashpath for now. Leave as is.}
-
-\item{outformat}{(character) One of newick, nexml, or fyt.}
-
-\item{clean}{(logical) Return a clean tree or not. Default: \code{TRUE}}
-
 \item{db}{(character) One of "ncbi", "itis", or "apg". Default: apg}
 
+\item{lowercase}{(logical) Convert all chars in taxa file to lowercase.
+Default: \code{FALSE}}
+
+\item{nodes}{(logical) label all nodes with default names.
+Default: \code{FALSE}}
+
 \item{verbose}{(logical) Print messages. Default: \code{TRUE}}
-
-\item{outfile}{(character) output file for the tree, cleaned up after}
-
-\item{cleanup}{(logical) Remove the output file. Default: \code{TRUE}}
-
-\item{path}{(character) Path to the \code{phylomatic-ws} folder}
 }
 \value{
-Newick formatted tree as \code{phylo} object or
-nexml character string
+Newick formatted tree as \code{phylo} object
 }
 \description{
 Use Phylomatic locally - ideal for large queries
 }
-\section{Fetch Phylomatic code}{
+\details{
+uses \code{\link[phylocomr:ph_phylomatic]{phylocomr::ph_phylomatic()}} under the hood
 
-Download the code by doing \code{git clone https://github.com/camwebb/phylomatic-ws}
-which will result in a folder \code{phylomatic-ws} (or download a zip file, and uncompress
-it). Then give the path to that folder in the \code{path} parameter
+This function uses Phylomatic via Phylocom using the
+\pkg{phylocomr} package. The interface is slightly different from
+\code{\link[=phylomatic]{phylomatic()}}: there's no tree by URL available, and some of the
+parameters are not included here.
+
+If you set \code{taxnames = FALSE}, you need to pass in a character
+vector, with each element like this example:
+\code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
+\code{"family/genus/genus_specfic epithet"}
 }
-
 \examples{
 \dontrun{
+library('ape')
+
 # Input taxonomic names
 taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
-(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
-plot(tree, no.margin=TRUE)
+(tree <- phylomatic_local(taxa))
+plot(collapse.singles(tree), no.margin=TRUE)
 
-taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diffusa",
-"Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
-(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws"))
-plot(tree, no.margin=TRUE)
-
-# Don't clean - clean=TRUE is default
-(tree <- phylomatic_local(taxa, path = "~/github/play/phylomatic-ws", clean = FALSE))
-## with clean=FALSE, you can get non-splitting nodes, which you
-## need to collpase before plotting
-library('ape')
+taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense",
+"Phlox diffusa", "Iteadaphne caudata", "Gagea sarmentosa",
+"Helianthus annuus")
+(tree <- phylomatic_local(taxa))
 plot(collapse.singles(tree), no.margin=TRUE)
 
 library("taxize")
-spp <- names_list("species", 1000)
+spp <- names_list("species", 500)
 length(spp)
-(tree <- phylomatic_local(spp, path = "~/github/play/phylomatic-ws", outfile="my.new"))
+(tree <- phylomatic_local(spp))
 }
 }

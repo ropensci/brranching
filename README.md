@@ -8,6 +8,7 @@ brranching
 [![codecov.io](https://codecov.io/github/ropensci/brranching/coverage.svg?branch=master)](https://codecov.io/github/ropensci/brranching?branch=master)
 [![cran checks](https://cranchecks.info/badges/worst/brranching)](https://cranchecks.info/pkgs/brranching)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/brranching)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/brranching)](https://cran.r-project.org/package=brranching)
 
 ## Description
 

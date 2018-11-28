@@ -39,7 +39,7 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
 \item{mssgs}{Print messages. Default: \code{TRUE}}
 
-\item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
+\item{...}{curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 Newick formatted tree as \code{phylo} object or
@@ -50,6 +50,11 @@ Query Phylomatic for a phylogenetic tree.
 }
 \details{
 Use the web interface at \url{http://phylodiversity.net/phylomatic/}
+
+If you set \code{taxnames = FALSE}, you need to pass in a character
+vector, with each element like this example:
+\code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
+\code{"family/genus/genus_specfic epithet"}
 }
 \examples{
 \dontrun{
@@ -82,10 +87,10 @@ out <- phylomatic(taxa=taxa, get = 'POST', outformat = "nexml")
 cat(out)
 
 # Lots of names, note that when you have enough names (number depends on length of individual
-# names, so there's no per se rule), you will get an error when using \\code{get='GET'},
-# when that happens use \\code{get='POST'}
+# names, so there's no per se rule), you will get an error when using `get='GET'`,
+# when that happens use `get='POST'`
 library("taxize")
-spp <- names_list("species", 5000)
+spp <- names_list("species", 500)
 # phylomatic(taxa = spp, get = "GET")
 (out <- phylomatic(taxa = spp, get = "POST"))
 plot(out)

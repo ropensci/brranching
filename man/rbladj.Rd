@@ -4,35 +4,45 @@
 \alias{rbladj}
 \title{Run Phylocom's bladj from R}
 \usage{
-rbladj(tree = NULL, ages = NULL, path = NULL, fixroot = FALSE)
+rbladj(tree, ages)
 }
 \arguments{
-\item{tree}{(phylo/character) If left NULL, it is expected that you already have a
-phylo file with your newick tree in your directory with your phylocom executable}
+\item{tree}{(character/phylo) One of: phylogeny as a newick string (will be
+written to a temp file) - OR path to file with a newick
+string - OR a an \pkg{ape} \code{phylo} object. required.}
 
-\item{ages}{(data.frame) If left NULL, it is expected that you already have an
-ages file with your node names and ages in your directory with your Phylocom executable}
-
-\item{path}{(character) Path to the folder with at least the Phylocom executable}
-
-\item{fixroot}{(logical) If TRUE root name is changed to the oldest root in your ages file.
-If FALSE (default),}
+\item{ages}{(data.frame/character) ages data.frame, or path to an ages
+file. required.}
+}
+\value{
+Newick formatted tree as \code{phylo} object
 }
 \description{
 Run Phylocom's bladj from R
 }
 \details{
-Download Phylocom http://phylodiversity.net/phylocom/phylocom-4.2.zip
+uses \code{\link[phylocomr:ph_bladj]{phylocomr::ph_bladj()}} under the hood
 }
 \examples{
 \dontrun{
-library("taxize")
-taxa <- names_list("species", 15)
-tree <- phylomatic(taxa=taxa, get = 'POST')
+library("phylocomr")
 
-path <- "~/Mac/Courses_Rice/EcolJClub563/Fall10/phylometa_stuff/R_tutorial/bladjing/"
-(tree2 <- rbladj(tree, path = path, fixroot = TRUE))
-plot(tree)
-plot(tree2)
+# make an ages data.frame
+ages_df <- data.frame(
+  a = c('malpighiales','eudicots','ericales_to_asterales','plantaginaceae',
+        'malvids', 'poales'),
+  b = c(81, 20, 56, 76, 47, 71)
+)
+
+# read phylogeny file as a string
+phylo_file <- system.file("examples/phylo_bladj", package = "phylocomr")
+phylo_str <- readLines(phylo_file)
+
+# Run Bladj, returns phylo object
+(x <- rbladj(tree = phylo_str, ages = ages_df))
+
+# load ape and plot tree
+library(ape)
+plot(x)
 }
 }

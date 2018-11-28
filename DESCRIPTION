@@ -1,8 +1,9 @@
 Package: brranching
 Title: Fetch 'Phylogenies' from Many Sources
 Description: Includes methods for fetching 'phylogenies' from a variety
-    of sources, currently includes 'Phylomatic'
-    (<http://phylodiversity.net/phylomatic>), with more in the future.
+    of sources, including the 'Phylomatic' web service 
+    (<http://phylodiversity.net/phylomatic>), and Phylocom 
+    (<https://github.com/phylocom/phylocom/>).
 Version: 0.3.0.9100
 Authors@R: c(
     person("Scott", "Chamberlain",
@@ -14,6 +15,8 @@ URL: https://github.com/ropensci/brranching
 BugReports: http://github.com/ropensci/brranching/issues
 LazyLoad: yes
 LazyData: yes
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
 Depends:
     R(>= 3.2.1)
 Imports:
@@ -21,11 +24,12 @@ Imports:
     curl (>= 1.2),
     ape,
     taxize,
-    phytools
+    phytools,
+    phylocomr (>= 0.1.0)
 Suggests:
     testthat,
     knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-isPartOf: "https://ropensci.org"

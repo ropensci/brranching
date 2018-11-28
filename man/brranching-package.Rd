@@ -9,6 +9,6 @@
 Phylogenies from many sources
 }
 \author{
-Scott Chamberlain <myrmecocystus@gmail.com>
+Scott Chamberlain \href{mailto:myrmecocystus@gmail.com}{myrmecocystus@gmail.com}
 }
 \keyword{package}
