@@ -15,12 +15,12 @@
 #' Default: `FALSE`
 #' @param verbose (logical) Print messages. Default: `TRUE`
 #'
-#' @return Newick formatted tree as `phylo` object or
-#' nexml character string
+#' @return Newick formatted tree as `phylo` object
 #'
 #' @details This function uses Phylomatic via Phylocom using the
-#' \pkg{phylocomr} package. The interface is slightly different: there's no
-#' tree by URL avaialable, and some of the parameters are not included here.
+#' \pkg{phylocomr} package. The interface is slightly different from 
+#' [phylomatic()]: there's no tree by URL available, and some of the 
+#' parameters are not included here.
 #'
 #' If you set `taxnames = FALSE`, you need to pass in a character
 #' vector, with each element like this example:
@@ -90,4 +90,9 @@ phylomatic_local <- function(taxa = NULL, taxnames = TRUE,
               class = c("phylo", "phylomatic"),
               missing = taxa_na2)
   }
+}
+
+get_note <- function(x) {
+  tmp <- substring(x, 1, 300)
+  if (nchar(x) > nchar(tmp)) paste0(tmp, " ...") else tmp
 }

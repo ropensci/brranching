@@ -30,16 +30,16 @@ Default: \code{FALSE}}
 \item{verbose}{(logical) Print messages. Default: \code{TRUE}}
 }
 \value{
-Newick formatted tree as \code{phylo} object or
-nexml character string
+Newick formatted tree as \code{phylo} object
 }
 \description{
 Use Phylomatic locally - ideal for large queries
 }
 \details{
 This function uses Phylomatic via Phylocom using the
-\pkg{phylocomr} package. The interface is slightly different: there's no
-tree by URL avaialable, and some of the parameters are not included here.
+\pkg{phylocomr} package. The interface is slightly different from
+\code{\link[=phylomatic]{phylomatic()}}: there's no tree by URL available, and some of the
+parameters are not included here.
 
 If you set \code{taxnames = FALSE}, you need to pass in a character
 vector, with each element like this example:
