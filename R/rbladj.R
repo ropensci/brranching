@@ -1,13 +1,16 @@
 #' Run Phylocom's bladj from R
 #'
 #' @export
-#' @param tree (phylo/character) If left NULL, it is expected that you already have a
-#' phylo file with your newick tree in your directory with your phylocom executable
-#' @param ages (data.frame) If left NULL, it is expected that you already have an
-#' ages file with your node names and ages in your directory with your Phylocom executable
-#' @param path (character) Path to the folder with at least the Phylocom executable
-#' @param fixroot (logical) If TRUE root name is changed to the oldest root in your ages file.
-#' If FALSE (default),
+#' @param tree (phylo/character) If `NULL`, it is expected that you 
+#' already have a phylo file with your newick tree in your directory 
+#' with your phylocom executable 
+#' @param ages (data.frame) If `NULL`, it is expected that you already 
+#' have an ages file with your node names and ages in your directory with 
+#' your Phylocom executable
+#' @param path (character) Path to the folder with at least the Phylocom 
+#' executable
+#' @param fixroot (logical) If `TRUE` root name is changed to the oldest root 
+#' in your ages file. If `FALSE` (default),
 #' @details Download Phylocom http://phylodiversity.net/phylocom/phylocom-4.2.zip
 #' @examples \dontrun{
 #' library("taxize")

@@ -7,16 +7,19 @@
 rbladj(tree = NULL, ages = NULL, path = NULL, fixroot = FALSE)
 }
 \arguments{
-\item{tree}{(phylo/character) If left NULL, it is expected that you already have a
-phylo file with your newick tree in your directory with your phylocom executable}
+\item{tree}{(phylo/character) If \code{NULL}, it is expected that you
+already have a phylo file with your newick tree in your directory
+with your phylocom executable}
 
-\item{ages}{(data.frame) If left NULL, it is expected that you already have an
-ages file with your node names and ages in your directory with your Phylocom executable}
+\item{ages}{(data.frame) If \code{NULL}, it is expected that you already
+have an ages file with your node names and ages in your directory with
+your Phylocom executable}
 
-\item{path}{(character) Path to the folder with at least the Phylocom executable}
+\item{path}{(character) Path to the folder with at least the Phylocom
+executable}
 
-\item{fixroot}{(logical) If TRUE root name is changed to the oldest root in your ages file.
-If FALSE (default),}
+\item{fixroot}{(logical) If \code{TRUE} root name is changed to the oldest root
+in your ages file. If \code{FALSE} (default),}
 }
 \description{
 Run Phylocom's bladj from R

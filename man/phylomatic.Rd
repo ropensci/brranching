@@ -39,7 +39,7 @@ mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829}
 
 \item{mssgs}{Print messages. Default: \code{TRUE}}
 
-\item{...}{curl options passed on to \code{\link[crul]{HttpClient}}}
+\item{...}{curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 Newick formatted tree as \code{phylo} object or
@@ -87,8 +87,8 @@ out <- phylomatic(taxa=taxa, get = 'POST', outformat = "nexml")
 cat(out)
 
 # Lots of names, note that when you have enough names (number depends on length of individual
-# names, so there's no per se rule), you will get an error when using \\code{get='GET'},
-# when that happens use \\code{get='POST'}
+# names, so there's no per se rule), you will get an error when using `get='GET'`,
+# when that happens use `get='POST'`
 library("taxize")
 spp <- names_list("species", 500)
 # phylomatic(taxa = spp, get = "GET")

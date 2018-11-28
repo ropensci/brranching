@@ -8,7 +8,8 @@
 #' @param format output format, isubmit (you can paste in to the Phylomatic
 #'     website), or 'rsubmit' to use in fxn phylomatic_tree
 #' @param db One of "ncbi", "itis", or "apg"
-#' @return e.g., "pinaceae/pinus/pinus_contorta", in Phylomatic submission format.
+#' @return e.g., "pinaceae/pinus/pinus_contorta", in Phylomatic submission 
+#' format
 #' @examples \dontrun{
 #' mynames <- c("Poa annua", "Salix goodingii", "Helianthus annuus")
 #' phylomatic_names(taxa = mynames, format='rsubmit')

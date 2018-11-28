@@ -2,30 +2,30 @@
 #'
 #' @export
 #' @param taxa (character) Phylomatic format input of taxa names.
-#' @param taxnames If \code{TRUE} (default), we get the family names for you
-#' to attach to your species names to send to Phylomatic API. If \code{FALSE},
+#' @param taxnames If `TRUE` (default), we get the family names for you
+#' to attach to your species names to send to Phylomatic API. If `FALSE`,
 #' you have to provide the strings in the right format. See Details.
 #' @param storedtree One of R20120829 (Phylomatic tree R20120829 for plants),
-#'    smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
-#'    mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829
+#' smith2011 (Smith 2011, plants), binindaemonds2007 (Bininda-Emonds 2007,
+#' mammals), or zanne2014 (Zanne et al. 2014, plants). Default: R20120829
 #' @param db (character) One of "ncbi", "itis", or "apg". Default: apg
 #' @param lowercase	(logical) Convert all chars in taxa file to lowercase.
-#' Default: \code{FALSE}
+#' Default: `FALSE`
 #' @param nodes (logical) label all nodes with default names.
-#' Default: \code{FALSE}
-#' @param verbose (logical) Print messages. Default: \code{TRUE}
+#' Default: `FALSE`
+#' @param verbose (logical) Print messages. Default: `TRUE`
 #'
-#' @return Newick formatted tree as \code{phylo} object or
+#' @return Newick formatted tree as `phylo` object or
 #' nexml character string
 #'
 #' @details This function uses Phylomatic via Phylocom using the
 #' \pkg{phylocomr} package. The interface is slightly different: there's no
 #' tree by URL avaialable, and some of the parameters are not included here.
 #'
-#' If you set \code{taxnames = FALSE}, you need to pass in a character
+#' If you set `taxnames = FALSE`, you need to pass in a character
 #' vector, with each element like this example:
-#' \code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
-#' \code{"family/genus/genus_specfic epithet"}
+#' `"asteraceae/taraxacum/taraxacum_officinale"`, of the form
+#' `"family/genus/genus_specfic epithet"`
 #'
 #' @examples \dontrun{
 #' library('ape')

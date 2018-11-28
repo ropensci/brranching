@@ -2,8 +2,8 @@
 #'
 #' @export
 #' @param taxa Phylomatic format input of taxa names.
-#' @param taxnames If \code{TRUE} (default), we get the family names for you to attach
-#' to your species names to send to Phylomatic API. If \code{FALSE}, you have to
+#' @param taxnames If `TRUE` (default), we get the family names for you to attach
+#' to your species names to send to Phylomatic API. If `FALSE`, you have to
 #' provide the strings in the right format.
 #' @param get 'GET' (default) or 'POST' format for submission to the website.
 #' @param informat One of newick (default), nexml, or cdaordf. If using a stored tree,
@@ -15,19 +15,19 @@
 #' @param treeuri URL for a phylogenetic tree in newick format.
 #' @param taxaformat Only option is slashpath for now. Leave as is.
 #' @param outformat One of newick, nexml, or fyt.
-#' @param clean Return a clean tree or not. Default: \code{TRUE}
+#' @param clean Return a clean tree or not. Default: `TRUE`
 #' @param db One of "ncbi", "itis", or "apg". Default: apg
-#' @param mssgs Print messages. Default: \code{TRUE}
-#' @param ... curl options passed on to \code{\link[crul]{HttpClient}}
+#' @param mssgs Print messages. Default: `TRUE`
+#' @param ... curl options passed on to [crul::HttpClient]
 #'
-#' @details Use the web interface at \url{http://phylodiversity.net/phylomatic/}
+#' @details Use the web interface at <http://phylodiversity.net/phylomatic/>
 #'
-#' If you set \code{taxnames = FALSE}, you need to pass in a character
+#' If you set `taxnames = FALSE`, you need to pass in a character
 #' vector, with each element like this example:
-#' \code{"asteraceae/taraxacum/taraxacum_officinale"}, of the form
-#' \code{"family/genus/genus_specfic epithet"}
+#' `"asteraceae/taraxacum/taraxacum_officinale"`, of the form
+#' `"family/genus/genus_specfic epithet"`
 #'
-#' @return Newick formatted tree as \code{phylo} object or
+#' @return Newick formatted tree as `phylo` object or
 #' nexml character string
 #'
 #' @examples \dontrun{
@@ -60,8 +60,8 @@
 #' cat(out)
 #'
 #' # Lots of names, note that when you have enough names (number depends on length of individual
-#' # names, so there's no per se rule), you will get an error when using \code{get='GET'},
-#' # when that happens use \code{get='POST'}
+#' # names, so there's no per se rule), you will get an error when using `get='GET'`,
+#' # when that happens use `get='POST'`
 #' library("taxize")
 #' spp <- names_list("species", 500)
 #' # phylomatic(taxa = spp, get = "GET")
