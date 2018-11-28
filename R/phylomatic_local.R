@@ -17,7 +17,9 @@
 #'
 #' @return Newick formatted tree as `phylo` object
 #'
-#' @details This function uses Phylomatic via Phylocom using the
+#' @details uses [phylocomr::ph_phylomatic()] under the hood
+#' 
+#' This function uses Phylomatic via Phylocom using the
 #' \pkg{phylocomr} package. The interface is slightly different from 
 #' [phylomatic()]: there's no tree by URL available, and some of the 
 #' parameters are not included here.

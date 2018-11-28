@@ -5,6 +5,7 @@
 #' @importFrom ape read.tree write.tree
 #' @importFrom taxize tax_name
 #' @importFrom phytools read.newick
+#' @importFrom phylocomr ph_bladj ph_phylomatic
 #' @name brranching-package
 #' @aliases brranching
 #' @docType package

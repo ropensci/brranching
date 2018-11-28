@@ -36,6 +36,8 @@ Newick formatted tree as \code{phylo} object
 Use Phylomatic locally - ideal for large queries
 }
 \details{
+uses \code{\link[phylocomr:ph_phylomatic]{phylocomr::ph_phylomatic()}} under the hood
+
 This function uses Phylomatic via Phylocom using the
 \pkg{phylocomr} package. The interface is slightly different from
 \code{\link[=phylomatic]{phylomatic()}}: there's no tree by URL available, and some of the
