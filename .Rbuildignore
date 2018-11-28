@@ -8,5 +8,5 @@ README.Rmd
 ^cran-comments\.md$
 inst/img/
 .github
-
+^\inst\vign
 ^codemeta\.json$
