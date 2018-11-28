@@ -2,7 +2,6 @@
 
 export(phylomatic)
 export(phylomatic_local)
-export(phylomatic_local2)
 export(phylomatic_names)
 export(rbladj)
 importFrom(ape,read.tree)

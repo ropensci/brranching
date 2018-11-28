@@ -26,7 +26,7 @@ Imports:
 Suggests:
     testthat,
     knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 X-schema.org-applicationCategory: Data Access
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-isPartOf: "https://ropensci.org"
