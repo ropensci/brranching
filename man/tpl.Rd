@@ -6,9 +6,9 @@
 \title{Lookup-table for family, genus, and species names for ThePlantList
 gymnosperms}
 \format{A data frame with 23,801 rows and 2 variables:
-\describe{
-\item{family}{family name}
-\item{genus}{genus name}
+\itemize{
+\item family: family name
+\item genus: genus name
 }}
 \source{
 \url{http://www.theplantlist.org/}

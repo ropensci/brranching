@@ -15,8 +15,8 @@ website), or 'rsubmit' to use in fxn phylomatic_tree}
 \item{db}{One of "ncbi", "itis", or "apg"}
 }
 \value{
-e.g., "pinaceae/pinus/pinus_contorta", in Phylomatic submission
-format
+string (e.g., "pinaceae/pinus/pinus_contorta"), in Phylomatic
+submission format
 }
 \description{
 Get family names to make Phylomatic input object, and

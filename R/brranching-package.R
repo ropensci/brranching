@@ -21,10 +21,10 @@ NULL
 #' used in the function [phylomatic_names()]
 #'
 #' @format A data frame with 23,801 rows and 2 variables:
-#' \describe{
-#'   \item{family}{family name}
-#'   \item{genus}{genus name}
-#' }
+#' 
+#' - family: family name
+#' - genus: genus name
+#' 
 #' @source <http://www.theplantlist.org/>
 #' @name tpl
 #' @docType data
@@ -34,12 +34,12 @@ NULL
 #' Phylogenies to use with phylomatic
 #'
 #' @format A list with 4 character strings:
-#' \itemize{
-#'   \item R20120829 - 2401 tips, 1801 internal nodes
-#'   \item binindaemonds2007 - 4510 tips, 2108 internal nodes
-#'   \item zanne2014 - 31749 tips, 31748 internal nodes
-#'   \item smith2011 - 55473 tips, 55338 internal nodes
-#' }
+#' 
+#' - R20120829 - 2401 tips, 1801 internal nodes
+#' - binindaemonds2007 - 4510 tips, 2108 internal nodes
+#' - zanne2014 - 31749 tips, 31748 internal nodes
+#' - smith2011 - 55473 tips, 55338 internal nodes
+#' 
 #' @source phylocom
 #' @name phylomatic_trees
 #' @docType data
