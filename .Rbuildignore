@@ -8,5 +8,6 @@ README.Rmd
 ^cran-comments\.md$
 inst/img/
 appveyor.yml
-^codemeta\.json$
 .github
+^\inst\vign
+^codemeta\.json$
