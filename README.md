@@ -8,15 +8,12 @@ brranching
 [![codecov.io](https://codecov.io/github/ropensci/brranching/coverage.svg?branch=master)](https://codecov.io/github/ropensci/brranching?branch=master)
 [![cran checks](https://cranchecks.info/badges/worst/brranching)](https://cranchecks.info/pkgs/brranching)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/brranching)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/brranching)](https://cran.r-project.org/package=brranching)
 
 ## Description
 
-<<<<<<< HEAD
-Brranching is an interface to many different sources of phylogenetic data (currently only from Phylomatic (http://phylodiversity.net/phylomatic/), but more sources to come) that allows users to query for phylogenetic data using taxonomic names.
-=======
 Brranching is an interface to many different sources of phylogenetic data (currently only from Phylomatic (http://phylodiversity.net/phylomatic/), but more sources to come) that allows users to query for phylogenetic data using taxonomic names.  
 
->>>>>>> master
 
 ## Installation
 
@@ -52,6 +49,7 @@ plot(tree, no.margin=TRUE)
 ![plot of chunk unnamed-chunk-5](tools/img/unnamed-chunk-5-1.png)
 
 You can pass in up to about 5000 names. We can use `taxize` to get a random set of plant species names.
+
 
 ```r
 library("taxize")
