@@ -4,12 +4,11 @@
 \alias{phylomatic_local}
 \title{Use Phylomatic locally - ideal for large queries}
 \usage{
-phylomatic_local(taxa = NULL, taxnames = TRUE,
-  storedtree = "R20120829", db = "apg", lowercase = FALSE,
-  nodes = FALSE, verbose = TRUE)
+phylomatic_local(taxa, taxnames = TRUE, storedtree = "R20120829",
+  db = "apg", lowercase = FALSE, nodes = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{taxa}{(character) Phylomatic format input of taxa names.}
+\item{taxa}{(character) Phylomatic format input of taxa names. required}
 
 \item{taxnames}{If \code{TRUE} (default), we get the family names for you
 to attach to your species names to send to Phylomatic API. If \code{FALSE},

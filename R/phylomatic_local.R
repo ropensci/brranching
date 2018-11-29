@@ -1,7 +1,7 @@
 #' Use Phylomatic locally - ideal for large queries
 #'
 #' @export
-#' @param taxa (character) Phylomatic format input of taxa names.
+#' @param taxa (character) Phylomatic format input of taxa names. required
 #' @param taxnames If `TRUE` (default), we get the family names for you
 #' to attach to your species names to send to Phylomatic API. If `FALSE`,
 #' you have to provide the strings in the right format. See Details.
