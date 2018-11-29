@@ -49,9 +49,16 @@
 #' (tree <- phylomatic_local(spp))
 #' }
 
-phylomatic_local <- function(taxa = NULL, taxnames = TRUE,
+phylomatic_local <- function(taxa, taxnames = TRUE,
   storedtree = "R20120829", db = "apg", lowercase = FALSE, nodes = FALSE,
   verbose = TRUE) {
+
+  assert(taxnames, "logical")
+  assert(storedtree, "character")
+  assert(db, "character")
+  assert(lowercase, "logical")
+  assert(nodes, "logical")
+  assert(verbose, "logical")
 
   mssg(verbose, "preparing names...")
   if (taxnames) {
