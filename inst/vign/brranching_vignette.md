@@ -46,7 +46,7 @@ tree <- phylomatic(taxa=taxa, get = 'POST')
 plot(tree, no.margin=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-5](tools/img/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 You can pass in up to about 5000 names. We can use [`taxize`](https://github.com/ropensci/taxize/) to get a random set of plant species names.
 
@@ -58,13 +58,4 @@ out <- phylomatic(taxa = spp, get = "POST")
 plot(out, show.tip.label = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-6](tools/img/unnamed-chunk-6-1.png)
-
-## Meta
-
-* Please [report any issues or bugs](https://github.com/ropensci/brranching/issues).
-* License: MIT
-* Get citation information for `brranching` in R doing `citation(package = 'brranching')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
-
-[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
