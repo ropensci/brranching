@@ -1,0 +1,12 @@
+ca1ea4f0a1cd19c631b0a4a3e1884738 *DESCRIPTION
+ca05db76ed18fc441af210887dcad3f9 *LICENSE
+e5f92f94672c5e98a5915faa66d4d8a2 *NAMESPACE
+f98933b7479b5a1bb60e3f6fe82b07a9 *R/downto.tree.R
+c3c1eb97d8f24967f39300968db39e65 *R/taxa.tree.R
+233d5f98a0ef1261c7987a79fe632caa *build/vignette.rds
+c4fbff87e62285229e54410a88b522d5 *inst/doc/aptg.R
+effa70d6942836f0483d1c26ed7e6474 *inst/doc/aptg.Rmd
+8defebab86b097ca6313bab19ac03367 *inst/doc/aptg.html
+ace15200f6f7a92b7e0e2c1c8ed3673b *man/downto.tree.Rd
+136a517156f1710e35be7cbcb596dc81 *man/taxa.tree.Rd
+effa70d6942836f0483d1c26ed7e6474 *vignettes/aptg.Rmd

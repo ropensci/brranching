@@ -12,3 +12,5 @@ appveyor.yml
 ^\inst\vign
 ^codemeta\.json$
 vignettes/figure
+^revdep$
+

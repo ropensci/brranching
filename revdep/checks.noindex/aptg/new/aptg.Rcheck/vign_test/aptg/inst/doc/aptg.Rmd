@@ -1,0 +1,48 @@
+---
+title: "Automatic Phylogenetic Tree Generator"
+author: "Christophe Benjamin"
+date: "March 28, 2017"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{aptg}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Use of aptg
+
+The aptg package is used to generate phylogenetic trees from a vector of species names or a tree of a taxon down to whatever taxon that is included in the first one. The phylogenetic tree are generated from brranching::phylomatic based on the program of the same name accessible there : http://phylodiversity.net/phylomatic/. 
+
+When the tree is generated from a vector of species names, distance matrices are given. 
+
+##taxa.tree
+
+```{r include=FALSE}
+library(aptg)
+
+```
+
+The function needs  list of species name as an input and will give phylogenetic trees and distance matrices as an output. Let's do an example with a mixed list of mammal and angiosperm species. 
+
+```{r taxa.tree, message=FALSE}
+taxa.tree(c("Canis lupus", "Canis latrans", "Acer saccharum", "Castor canadensis", "Alces alces", "Acer rubrum", "Vulpes vulpes", "Salix babylonica", "Odocoileus virginianus", "Betula alleghaniensis", "Rangifer tarandus","Juniperus occidentalis", "Pinus strobus"))
+```
+
+Here, _Salix babylonica_ have required an input to choose the good TSN number, if we omit it it is not include in the plot.  As you can see the taxa have been sorted by reference trees; mammals and angiosperms.  The distance matrices are also an output. 
+
+## downto.tree
+This function creates a phylogenetic tree from a taxon down to another one. For now, only the input species gives a result, but any higher taxon can be choosed. 
+
+```{r downto.tree, echo=TRUE, fig.height=4, fig.width=6, message=FALSE, warning=TRUE}
+downto.tree("Canidae", "species")
+```
+
+When running the code, this message would have appeared: 
+```{}
+NOTE: 10 taxa not matched: canidae/canis/canis_anthus, canidae/canis/canis_lupaster, canidae/dusicyon/dusicyon_australis, canidae/lycalopex/lycalopex_culpaeus, canidae/lycalopex/lycalopex_fulvipes, canidae/lycalopex/lycalopex_gymnocercus, canidae/lycalopex/lycalopex_sechurae, canidae/lycalopex/lycalopex_vetulus, canidae/vulpes/vulpes_lagopus, canidae/vulpes/vulpes_macrotis, ];
+```
+For esthetic purposes we omitted all the messages of the function, but when creating the tree, certain inputs from functions included in __downto.tree__ are not recognized in the reference supertrees. 
