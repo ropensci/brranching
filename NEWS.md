@@ -8,6 +8,10 @@ brranching 0.4.0
 * added a package vignette (#31) (#34) thanks @fozy81
 * added new dataset of four phylogenetic trees that can be used in `phylomatic_local()`, see `?phylomatic_trees`
 
+### MINOR IMPROVEMENTS
+
+* added docs to `phylomatic_names()` and the README on using NCBI Entrez API keys
+
 
 brranching 0.3.0
 ================
