@@ -22,6 +22,11 @@ knitr::opts_chunk$set(
 
 Brranching is an interface to many different sources of phylogenetic data (currently only from Phylomatic (http://phylodiversity.net/phylomatic/), but more sources to come) that allows users to query for phylogenetic data using taxonomic names.  
 
+For `brranching::phylomatic_names()` function you should get an NCBI Entrez API key. NCBI Entrez doesn't require that 
+you use an API key, but you get higher rate limit with a key, from 3 to 10 requests per second, so do 
+get one. Run `taxize::use_entrez()` or see 
+<https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/>
+for instructions.
 
 ## Installation
 
