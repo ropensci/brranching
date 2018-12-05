@@ -1,3 +1,14 @@
+brranching 0.4.0
+================
+
+### NEW FEATURES
+
+* in the `phylomatic_local()` function now using `phylocomr::ph_phylomatic`  instead of shelling out to Phylocom via `system`. A number of parameters are gone due to the change internally (#30) (#35)
+* in the `rbladj()` function now using `phylocomr::ph_bladj` instead of shelling out to Phylocom via `system` (#30) (#35)
+* added a package vignette (#31) (#34) thanks @fozy81
+* added new dataset of four phylogenetic trees that can be used in `phylomatic_local()`, see `?phylomatic_trees`
+
+
 brranching 0.3.0
 ================
 
