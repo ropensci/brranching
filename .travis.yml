@@ -12,6 +12,7 @@ addons:
   apt:
     packages: 
       - libapparmor-dev
+      - libmagick++-dev
 
 env:
   global:
