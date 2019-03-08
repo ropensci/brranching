@@ -1,3 +1,6 @@
+# set up message keeper
+brr_mssger <- MessageKeeper$new()
+
 #' Phylomatic names
 #'
 #' @description Get family names to make Phylomatic input object, and
@@ -11,6 +14,7 @@
 #' requests are made (no internet connection needed), whereas if you use 
 #' "ncbi" or "itis" you do need an internet connection. IMPORTANT: 
 #' see **Authentication** below if using "ncbi".
+#' @param ... curl options passed on to [taxize::tax_name()]
 #' @return string (e.g., "pinaceae/pinus/pinus_contorta"), in Phylomatic 
 #' submission format
 #' @section Authentication:
@@ -42,9 +46,12 @@
 #' phylomatic_names(mynames, format='isubmit', db="apg")
 #' }
 
-phylomatic_names <- function(taxa, format='isubmit', db="ncbi") {
+phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
   format <- match.arg(format, c('isubmit', 'rsubmit'))
   db <- match.arg(db, c('ncbi', 'itis', 'apg'))
+
+  # tear down on exit
+  on.exit(brr_mssger$purge())
 
   foo <- function(nnn) {
     # split up strings if a species name
@@ -53,7 +60,10 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi") {
     taxa_genus <- traits_capwords(taxa2[[1]], onlyfirst = TRUE)
 
     if (db %in% c("ncbi", "itis")) {
-      family <- taxize::tax_name(query = taxa_genus, get = "family", db = db)$family
+      family <- 
+        handle_mssgs(
+          taxize::tax_name(
+            query = taxa_genus, get = "family", db = db, ...)$family)
     } else {
       tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]

@@ -4,7 +4,7 @@
 \alias{phylomatic_names}
 \title{Phylomatic names}
 \usage{
-phylomatic_names(taxa, format = "isubmit", db = "ncbi")
+phylomatic_names(taxa, format = "isubmit", db = "ncbi", ...)
 }
 \arguments{
 \item{taxa}{quoted tsn number (taxonomic serial number)}
@@ -16,6 +16,8 @@ website), or 'rsubmit' to use in fxn phylomatic_tree}
 requests are made (no internet connection needed), whereas if you use
 "ncbi" or "itis" you do need an internet connection. IMPORTANT:
 see \strong{Authentication} below if using "ncbi".}
+
+\item{...}{curl options passed on to \code{\link[taxize:tax_name]{taxize::tax_name()}}}
 }
 \value{
 string (e.g., "pinaceae/pinus/pinus_contorta"), in Phylomatic
