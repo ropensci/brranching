@@ -46,6 +46,8 @@
 phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
   format <- match.arg(format, c('isubmit', 'rsubmit'))
   db <- match.arg(db, c('ncbi', 'itis', 'apg'))
+  ck <- conditionz::ConditionKeeper$new(times = 1)
+  on.exit(ck$purge())
 
   foo <- function(nnn) {
     # split up strings if a species name
@@ -54,8 +56,9 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
     taxa_genus <- traits_capwords(taxa2[[1]], onlyfirst = TRUE)
 
     if (db %in% c("ncbi", "itis")) {
-      family <- taxize::tax_name(
-        query = taxa_genus, get = "family", db = db, ...)$family
+      family <- ck$handle_conditions(
+        taxize::tax_name(
+          query = taxa_genus, get = "family", db = db, ...)$family)
     } else {
       tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]
@@ -69,10 +72,11 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
     stringg <- tolower(as.character(stringg))
     if (format == 'isubmit') {
       paste(stringg[[1]], "/", stringg[2], "/", tolower(sub(" ", "_", nnn)), sep = '')
-    } else
+    } else {
       if (format == 'rsubmit') {
         paste(stringg[[1]], "%2F", stringg[2], "%2F", tolower(sub(" ", "_", nnn)), sep = '')
       }
+    }
   }
   sapply(taxa, foo, USE.NAMES = FALSE)
 }

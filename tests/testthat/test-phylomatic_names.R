@@ -48,3 +48,25 @@ test_that("phylomatic fails as expected", {
   expect_error(phylomatic_names(mynames, db = "things"),
                "'arg' should be one of")
 })
+
+test_that("phylomatic_names behaves as expected if no Entrez env var set", {
+  skip_on_cran()
+  
+  mynames <- c("Poa annua", "Salix goodingii")
+
+  # message about key not given when key is set
+  expect_message(phylomatic_names(mynames), NULL)
+
+  env_var <- Sys.getenv("ENTREZ_KEY")
+  Sys.unsetenv("ENTREZ_KEY")
+
+  # message about the missing key should be given
+  # FIXME: ideally test that it's only given once per function call
+  expect_message(phylomatic_names(mynames), "No ENTREZ API key provided")
+  
+
+
+  # reset env var
+  Sys.setenv("ENTREZ_KEY" = env_var)
+})
+
