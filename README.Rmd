@@ -64,11 +64,30 @@ out <- phylomatic(taxa = spp, get = "POST")
 plot(out, show.tip.label = FALSE)
 ```
 
+## Bladj
+
+```{r}
+library("phylocomr")
+ages_df <- data.frame(
+  a = c('malpighiales','eudicots','ericales_to_asterales','plantaginaceae',
+        'malvids', 'poales'),
+  b = c(81, 20, 56, 76, 47, 71)
+)
+phylo_file <- system.file("examples/phylo_bladj", package = "phylocomr")
+phylo_str <- readLines(phylo_file)
+x <- rbladj(tree = phylo_str, ages = ages_df)
+library(ape)
+plot(x)
+```
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/brranching/issues).
 * License: MIT
 * Get citation information for `brranching` in R doing `citation(package = 'brranching')`
-* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct][coc]
+By participating in this project you agree to abide by its terms.
 
 [![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+[coc]: https://github.com/ropensci/brranching/blob/master/CODE_OF_CONDUCT.md
