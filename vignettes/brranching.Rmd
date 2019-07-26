@@ -59,3 +59,22 @@ plot(out, show.tip.label = FALSE)
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+
+## Bladj
+
+
+```r
+library("phylocomr")
+ages_df <- data.frame(
+  a = c('malpighiales','eudicots','ericales_to_asterales','plantaginaceae',
+        'malvids', 'poales'),
+  b = c(81, 20, 56, 76, 47, 71)
+)
+phylo_file <- system.file("examples/phylo_bladj", package = "phylocomr")
+phylo_str <- readLines(phylo_file)
+x <- rbladj(tree = phylo_str, ages = ages_df)
+library(ape)
+plot(x)
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
