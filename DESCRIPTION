@@ -26,7 +26,8 @@ Imports:
     ape,
     taxize,
     phytools,
-    phylocomr (>= 0.1.4)
+    phylocomr (>= 0.1.4),
+    conditionz
 Suggests:
     testthat,
     knitr

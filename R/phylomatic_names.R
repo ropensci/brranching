@@ -35,6 +35,10 @@
 #' or environment variables.
 #'
 #' We strongly recommend using environment variables over R options.
+#' 
+#' Note that if you don't have an ENTREZ_KEY set, you'll get a message
+#' about it, but only once during each function call. That is, there
+#' can be of these messages per R session, across function calls.
 #' @examples \dontrun{
 #' mynames <- c("Poa annua", "Salix goodingii", "Helianthus annuus")
 #' phylomatic_names(taxa = mynames, format='rsubmit')
@@ -46,6 +50,8 @@
 phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
   format <- match.arg(format, c('isubmit', 'rsubmit'))
   db <- match.arg(db, c('ncbi', 'itis', 'apg'))
+  ck <- conditionz::ConditionKeeper$new(times = 1)
+  on.exit(ck$purge())
 
   foo <- function(nnn) {
     # split up strings if a species name
@@ -54,8 +60,10 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
     taxa_genus <- traits_capwords(taxa2[[1]], onlyfirst = TRUE)
 
     if (db %in% c("ncbi", "itis")) {
-      family <- taxize::tax_name(
-        query = taxa_genus, get = "family", db = db, ...)$family
+      family <- ck$handle_conditions(
+        taxize::tax_name(
+          query = taxa_genus, get = "family", db = db, messages = FALSE, 
+          ...)$family)
     } else {
       tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]
@@ -69,10 +77,11 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
     stringg <- tolower(as.character(stringg))
     if (format == 'isubmit') {
       paste(stringg[[1]], "/", stringg[2], "/", tolower(sub(" ", "_", nnn)), sep = '')
-    } else
+    } else {
       if (format == 'rsubmit') {
         paste(stringg[[1]], "%2F", stringg[2], "%2F", tolower(sub(" ", "_", nnn)), sep = '')
       }
+    }
   }
   sapply(taxa, foo, USE.NAMES = FALSE)
 }

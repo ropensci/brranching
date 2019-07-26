@@ -6,6 +6,7 @@
 #' @importFrom taxize tax_name
 #' @importFrom phytools read.newick
 #' @importFrom phylocomr ph_bladj ph_phylomatic
+#' @importFrom conditionz ConditionKeeper
 #' @name brranching-package
 #' @aliases brranching
 #' @docType package
