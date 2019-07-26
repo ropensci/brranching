@@ -22,7 +22,7 @@ Depends:
     R(>= 3.2.1)
 Imports:
     crul (>= 0.4.0),
-    curl (>= 1.2),
+    curl,
     ape,
     taxize,
     phytools,
@@ -31,6 +31,6 @@ Suggests:
     testthat,
     knitr
 RoxygenNote: 6.1.1
-X-schema.org-applicationCategory: Data Access
+X-schema.org-applicationCategory: Phylogenetics
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-isPartOf: "https://ropensci.org"
