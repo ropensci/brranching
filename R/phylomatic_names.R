@@ -35,6 +35,10 @@
 #' or environment variables.
 #'
 #' We strongly recommend using environment variables over R options.
+#' 
+#' Note that if you don't have an ENTREZ_KEY set, you'll get a message
+#' about it, but only once during each function call. That is, there
+#' can be of these messages per R session, across function calls.
 #' @examples \dontrun{
 #' mynames <- c("Poa annua", "Salix goodingii", "Helianthus annuus")
 #' phylomatic_names(taxa = mynames, format='rsubmit')
@@ -58,7 +62,8 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
     if (db %in% c("ncbi", "itis")) {
       family <- ck$handle_conditions(
         taxize::tax_name(
-          query = taxa_genus, get = "family", db = db, ...)$family)
+          query = taxa_genus, get = "family", db = db, messages = FALSE, 
+          ...)$family)
     } else {
       tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
       dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]

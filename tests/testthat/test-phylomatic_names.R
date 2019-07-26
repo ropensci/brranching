@@ -53,17 +53,24 @@ test_that("phylomatic_names behaves as expected if no Entrez env var set", {
   skip_on_cran()
   
   myname <- "Salix goodingii"
+  mynames <- c("Salix goodingii", "Poa annua")
 
   # message about key not given when key is set
-  expect_message(phylomatic_names(myname), NULL)
+  expect_silent(phylomatic_names(myname))
 
   env_var <- Sys.getenv("ENTREZ_KEY")
   Sys.unsetenv("ENTREZ_KEY")
 
   # message about the missing key should be given
   # FIXME: ideally test that it's only given once per function call
-  expect_message(phylomatic_names(myname), "No ENTREZ API key provided")
-  
+  # expect_message(phylomatic_names(myname), "No ENTREZ API key provided")
+
+  # only given once per function call
+  # expect_message(phylomatic_names(mynames), "No ENTREZ API key provided")
+
+  # test that it's only given once per function call
+  res <- conditionz::capture_message(phylomatic_names(mynames))
+  expect_equal(length(res$text), 1)
 
 
   # reset env var
