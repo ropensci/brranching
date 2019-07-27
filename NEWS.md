@@ -1,3 +1,15 @@
+brranching 0.5.0
+================
+
+### MINOR IMPROVEMENTS
+
+* now using package `conditionz` in the `phylomatic_names()` function for handling messages from the `taxize` package about the user not having an API key set  (#36) (#40)
+
+### BUG FIXES
+
+* require newest `phylocomr` version that has fixes for various mis-behavior  (#38) (#39)
+
+
 brranching 0.4.0
 ================
 

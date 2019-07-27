@@ -5,19 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "brranching",
-  "description": "Includes methods for fetching 'phylogenies' from a variety\n    of sources, currently includes 'Phylomatic'\n    (<http://phylodiversity.net/phylomatic>), with more in the future.",
+  "description": "Includes methods for fetching 'phylogenies' from a variety\n    of sources, including the 'Phylomatic' web service \n    (<http://phylodiversity.net/phylomatic>), and 'Phylocom' \n    (<https://github.com/phylocom/phylocom/>).",
   "name": "brranching: Fetch 'Phylogenies' from Many Sources",
   "codeRepository": "https://github.com/ropensci/brranching",
   "issueTracker": "http://github.com/ropensci/brranching/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.0",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.0 (2018-04-23)",
+  "runtimePlatform": "R version 3.6.1 Patched (2019-07-17 r76848)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -30,7 +30,7 @@
       "givenName": "Scott",
       "familyName": "Chamberlain",
       "email": "myrmecocystus@gmail.com",
-      "@id": "orcid.org/0000-0003-1444-9135"
+      "@id": "https://orcid.org/0000-0003-1444-9135"
     }
   ],
   "maintainer": [
@@ -39,7 +39,7 @@
       "givenName": "Scott",
       "familyName": "Chamberlain",
       "email": "myrmecocystus@gmail.com",
-      "@id": "orcid.org/0000-0003-1444-9135"
+      "@id": "https://orcid.org/0000-0003-1444-9135"
     }
   ],
   "softwareSuggestions": [
@@ -54,6 +54,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
     }
   ],
   "softwareRequirements": [
@@ -80,7 +92,6 @@
       "@type": "SoftwareApplication",
       "identifier": "curl",
       "name": "curl",
-      "version": ">= 1.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -124,14 +135,42 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=phytools"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "phylocomr",
+      "name": "phylocomr",
+      "version": ">= 0.1.4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=phylocomr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "conditionz",
+      "name": "conditionz",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=conditionz"
     }
   ],
-  "applicationCategory": "DataAccess",
+  "applicationCategory": "Phylogenetics",
   "isPartOf": "\"https://ropensci.org\"",
   "keywords": ["phylogeny", "tree", "phylomatic", "molecular", "plants", "rstats", "phylogenies", "r", "r-package"],
   "contIntegration": "https://travis-ci.org/ropensci/brranching",
   "releaseNotes": "https://github.com/ropensci/brranching/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/brranching/blob/master/README.md",
-  "fileSize": "181.124KB",
-  "developmentStatus": "http://www.repostatus.org/#active"
+  "fileSize": "1013.133KB",
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }
