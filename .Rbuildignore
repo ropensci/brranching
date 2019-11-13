@@ -1,6 +1,5 @@
 ^\.travis\.yml
 ^\.DS_Store
-Makefile
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
@@ -13,4 +12,4 @@ appveyor.yml
 ^codemeta\.json$
 vignettes/figure
 ^revdep$
-
+^Makefile$
