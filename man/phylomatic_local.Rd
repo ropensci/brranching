@@ -4,8 +4,15 @@
 \alias{phylomatic_local}
 \title{Use Phylomatic locally - ideal for large queries}
 \usage{
-phylomatic_local(taxa, taxnames = TRUE, storedtree = "R20120829",
-  db = "apg", lowercase = FALSE, nodes = FALSE, verbose = TRUE)
+phylomatic_local(
+  taxa,
+  taxnames = TRUE,
+  storedtree = "R20120829",
+  db = "apg",
+  lowercase = FALSE,
+  nodes = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{taxa}{(character) Phylomatic format input of taxa names. required}

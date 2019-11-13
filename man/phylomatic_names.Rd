@@ -49,6 +49,10 @@ if you're using the shell) to take advantage of the new R options
 or environment variables.
 
 We strongly recommend using environment variables over R options.
+
+Note that if you don't have an ENTREZ_KEY set, you'll get a message
+about it, but only once during each function call. That is, there
+can be of these messages per R session, across function calls.
 }
 
 \examples{

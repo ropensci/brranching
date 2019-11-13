@@ -4,10 +4,21 @@
 \alias{phylomatic}
 \title{Query Phylomatic for a phylogenetic tree.}
 \usage{
-phylomatic(taxa, taxnames = TRUE, get = "GET", informat = "newick",
-  method = "phylomatic", storedtree = "R20120829", treeuri = NULL,
-  taxaformat = "slashpath", outformat = "newick", clean = TRUE,
-  db = "apg", mssgs = TRUE, ...)
+phylomatic(
+  taxa,
+  taxnames = TRUE,
+  get = "GET",
+  informat = "newick",
+  method = "phylomatic",
+  storedtree = "R20120829",
+  treeuri = NULL,
+  taxaformat = "slashpath",
+  outformat = "newick",
+  clean = TRUE,
+  db = "apg",
+  mssgs = TRUE,
+  ...
+)
 }
 \arguments{
 \item{taxa}{Phylomatic format input of taxa names.}
