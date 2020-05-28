@@ -1,5 +1,5 @@
-#' Phylogenies from many sources
-#'
+#' @title brranching
+#' @description Phylogenies from many sources
 #' @importFrom crul HttpClient
 #' @importFrom curl curl_escape
 #' @importFrom ape read.tree write.tree

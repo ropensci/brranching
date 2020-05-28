@@ -4,7 +4,10 @@
 \name{brranching-package}
 \alias{brranching-package}
 \alias{brranching}
-\title{Phylogenies from many sources}
+\title{brranching}
+\description{
+Phylogenies from many sources
+}
 \author{
 Scott Chamberlain \href{mailto:myrmecocystus@gmail.com}{myrmecocystus@gmail.com}
 }
