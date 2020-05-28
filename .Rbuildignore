@@ -8,7 +8,7 @@ README.Rmd
 inst/img/
 appveyor.yml
 .github
-^\inst\vign
+^inst/vign$
 ^codemeta\.json$
 vignettes/figure
 ^revdep$

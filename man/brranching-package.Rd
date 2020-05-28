@@ -5,9 +5,6 @@
 \alias{brranching-package}
 \alias{brranching}
 \title{Phylogenies from many sources}
-\description{
-Phylogenies from many sources
-}
 \author{
 Scott Chamberlain \href{mailto:myrmecocystus@gmail.com}{myrmecocystus@gmail.com}
 }

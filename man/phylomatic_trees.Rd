@@ -4,13 +4,15 @@
 \name{phylomatic_trees}
 \alias{phylomatic_trees}
 \title{Phylogenies to use with phylomatic}
-\format{A list with 4 character strings:
+\format{
+A list with 4 character strings:
 \itemize{
 \item R20120829 - 2401 tips, 1801 internal nodes
 \item binindaemonds2007 - 4510 tips, 2108 internal nodes
 \item zanne2014 - 31749 tips, 31748 internal nodes
 \item smith2011 - 55473 tips, 55338 internal nodes
-}}
+}
+}
 \source{
 phylocom
 }
