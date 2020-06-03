@@ -4,7 +4,7 @@ Description: Includes methods for fetching 'phylogenies' from a variety
     of sources, including the 'Phylomatic' web service 
     (<http://phylodiversity.net/phylomatic>), and 'Phylocom' 
     (<https://github.com/phylocom/phylocom/>).
-Version: 0.5.0.9100
+Version: 0.5.3.92
 Authors@R: c(
     person("Scott", "Chamberlain",
         role = c("aut", "cre"),
@@ -24,7 +24,7 @@ Imports:
     crul (>= 0.4.0),
     curl,
     ape,
-    taxize,
+    taxize (>= 0.9.96.93),
     phytools,
     phylocomr (>= 0.1.4),
     conditionz
@@ -32,6 +32,7 @@ Suggests:
     testthat,
     knitr
 RoxygenNote: 7.1.0
+Remotes: ropensci/taxize
 X-schema.org-applicationCategory: Phylogenetics
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-isPartOf: "https://ropensci.org"

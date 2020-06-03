@@ -41,18 +41,19 @@ test_that("phylomatic - nexml output format", {
   expect_true(grepl("nexml", out))
 })
 
-test_that("phylomatic - treeuri param", {
-  skip_on_cran()
+# FIXME: dryad url is broken, can't find new url
+# test_that("phylomatic - treeuri param", {
+#   skip_on_cran()
 
-  spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
-    "Abies_numidica", "Abies_pinsapo", "Abies_alba")
-  url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
-  tree <- phylomatic(taxa = spp, treeuri = url)
+#   spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
+#     "Abies_numidica", "Abies_pinsapo", "Abies_alba")
+#   url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
+#   tree <- phylomatic(taxa = spp, treeuri = url)
 
-  expect_is(tree, "phylo")
-  expect_is(tree, "phylomatic")
-  expect_equal(tree$tip.label, spp)
-})
+#   expect_is(tree, "phylo")
+#   expect_is(tree, "phylomatic")
+#   expect_equal(tree$tip.label, spp)
+# })
 
 
 test_that("phylomatic fails as expected", {

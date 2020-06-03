@@ -65,12 +65,8 @@ phylomatic_names <- function(taxa, format='isubmit', db="ncbi", ...) {
           messages = FALSE, ...)$family)
     } else {
       tplfamily <- tpl[ match(taxa_genus, tpl$genus), "family" ]
-      dd <- taxize::apg_families[ match(tplfamily, taxize::apg_families$this), ]
-      if (nchar(as.character(dd$that), keepNA = FALSE) == 0) {
-        family <- dd$this
-      } else {
-        family <- dd$that
-      }
+      family <- taxize::apg_families[ 
+        match(tplfamily, taxize::apg_families$accepted_name), ]$accepted_name
     }
     stringg <- c(family, strsplit(nnn, " ")[[1]])
     stringg <- tolower(as.character(stringg))

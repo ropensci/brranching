@@ -103,13 +103,7 @@ cat(out)
 library("taxize")
 spp <- names_list("species", 500)
 # phylomatic(taxa = spp, get = "GET")
-(out <- phylomatic(taxa = spp, get = "POST"))
+(out <- phylomatic(taxa = spp, get = "POST", db = "itis"))
 plot(out)
-
-# Pass in a tree from a URL on the web
-spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
-"Abies_numidica", "Abies_pinsapo", "Abies_alba")
-url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
-phylomatic(taxa=spp, treeuri=url)
 }
 }

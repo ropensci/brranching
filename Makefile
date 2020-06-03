@@ -28,5 +28,8 @@ check: build
 	@rm -f `ls -1tr ${PACKAGE}*gz | tail -n1`
 	@rm -rf ${PACKAGE}.Rcheck
 
+readme:
+	${RSCRIPT} -e 'knitr::knit("README.Rmd")'
+
 test:
 	${RSCRIPT} -e 'devtools::test()'
