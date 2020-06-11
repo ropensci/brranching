@@ -2,6 +2,7 @@ context("phylomatic")
 
 test_that("phylomatic_local - GET (default) method works", {
   skip_on_cran()
+  skip_on_ci()
 
   taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
   tree <- phylomatic_local(taxa = taxa, verbose = FALSE)
@@ -13,6 +14,7 @@ test_that("phylomatic_local - GET (default) method works", {
 
 test_that("phylomatic_local - smith2011", {
   skip_on_cran()
+  skip_on_ci()
 
   taxa <- c("Pinus mugo", "Pinus abies", "Picea meyeri", "Tsuga mertensiana")
   tree <- phylomatic_local(taxa, storedtree = 'smith2011', verbose = FALSE)
@@ -23,6 +25,7 @@ test_that("phylomatic_local - smith2011", {
 
 test_that("phylomatic_local - zanne2014", {
   skip_on_cran()
+  skip_on_ci()
 
   taxa <- c("Pinus mugo", "Pinus abies", "Picea meyeri", "Tsuga mertensiana", 
     "Neuburgia corynocarpum", "Geniostoma borbonicum", "Strychnos darienensis")
