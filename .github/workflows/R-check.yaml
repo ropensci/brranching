@@ -49,7 +49,7 @@ jobs:
         if: runner.os == 'macOS'
         continue-on-error: true
         run: |
-          brew install pkg-config gdal geos openssl udunits protobuf proj
+          brew install imagemagick
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
