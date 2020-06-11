@@ -1,4 +1,4 @@
-context("phylomatic")
+context("phylomatic_local")
 
 test_that("phylomatic_local - GET (default) method works", {
   skip_on_cran()
