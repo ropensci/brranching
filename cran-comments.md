@@ -16,5 +16,7 @@ There are no reverse dependencies.
 
 This version fixes usage of a dataset that was updated in the latest version of taxize.
 
+This is a re-submission of the same version (v0.6.0), fixing an "Non-file package-anchored link" issue.
+
 Thanks!
 Scott Chamberlain
