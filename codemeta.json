@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/brranching",
   "issueTracker": "http://github.com/ropensci/brranching/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
+    "version": "4.0.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 Patched (2019-07-17 r76848)",
+  "runtimePlatform": "R version 4.0.1 (2020-06-06)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -116,6 +116,7 @@
       "@type": "SoftwareApplication",
       "identifier": "taxize",
       "name": "taxize",
+      "version": ">= 0.9.97",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -168,9 +169,10 @@
   "contIntegration": "https://travis-ci.org/ropensci/brranching",
   "releaseNotes": "https://github.com/ropensci/brranching/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/brranching/blob/master/README.md",
-  "fileSize": "1013.158KB",
+  "fileSize": "960.595KB",
   "developmentStatus": "http://www.repostatus.org/#active",
   "contributor": {},
   "copyrightHolder": {},
-  "funder": {}
+  "funder": {},
+  "relatedLink": "https://docs.ropensci.org/brranching"
 }

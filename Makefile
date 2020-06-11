@@ -28,6 +28,9 @@ check: build
 	@rm -f `ls -1tr ${PACKAGE}*gz | tail -n1`
 	@rm -rf ${PACKAGE}.Rcheck
 
+checkwindows:
+	${RSCRIPT} -e "devtools::check_win_devel(quiet = TRUE); devtools::check_win_release(quiet = TRUE)"
+
 readme:
 	${RSCRIPT} -e 'knitr::knit("README.Rmd")'
 

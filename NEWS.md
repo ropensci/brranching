@@ -1,3 +1,11 @@
+brranching 0.6.0
+================
+
+### MINOR IMPROVEMENTS
+
+* the APG dataset in `taxize` package was updated in taxize `v0.9.97` - changes made to comply with the changes in the APG dataset structure  (#41)
+
+
 brranching 0.5.0
 ================
 
