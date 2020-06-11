@@ -1,8 +1,0 @@
-brranching-package      Phylogenies from many sources
-phylomatic              Query Phylomatic for a phylogenetic tree.
-phylomatic_local        Use Phylomatic locally - ideal for large
-                        queries
-phylomatic_names        Phylomatic names
-rbladj                  Run Phylocom's bladj from R
-tpl                     Lookup-table for family, genus, and species
-                        names for ThePlantList gymnosperms
