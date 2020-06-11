@@ -4,7 +4,7 @@ brranching
 
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.org/ropensci/brranching.svg?branch=master)](https://travis-ci.org/ropensci/brranching)
+[![R-check](https://github.com/ropensci/brranching/workflows/R-check/badge.svg)](https://github.com/ropensci/brranching/actions/)
 [![codecov.io](https://codecov.io/github/ropensci/brranching/coverage.svg?branch=master)](https://codecov.io/github/ropensci/brranching?branch=master)
 [![cran checks](https://cranchecks.info/badges/worst/brranching)](https://cranchecks.info/pkgs/brranching)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/brranching)](https://github.com/metacran/cranlogs.app)
