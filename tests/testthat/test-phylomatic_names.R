@@ -4,8 +4,7 @@ mynames <- c("Poa annua", "Salix goodingii", "Helianthus annuus")
 
 test_that("phylomatic_names - rsubmit works", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
 
   nms <- suppressMessages(phylomatic_names(mynames, format = 'rsubmit'))
 
@@ -16,8 +15,7 @@ test_that("phylomatic_names - rsubmit works", {
 
 test_that("phylomatic_names - isubmit (default) works", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
 
   nms <- suppressMessages(phylomatic_names(taxa = mynames, format = 'isubmit'))
 
@@ -29,8 +27,7 @@ test_that("phylomatic_names - isubmit (default) works", {
 
 test_that("phylomatic_names - db=apg works", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
 
   nms <- suppressMessages(phylomatic_names(mynames, db = "apg"))
 
@@ -42,8 +39,7 @@ test_that("phylomatic_names - db=apg works", {
 
 test_that("phylomatic fails as expected", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
 
   # fails when no taxa given
   expect_error(phylomatic_names(), "argument \"taxa\" is missing")
@@ -59,8 +55,7 @@ test_that("phylomatic fails as expected", {
 
 test_that("phylomatic_names behaves as expected if no Entrez env var set", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
+  skip_on_ci()
   
   myname <- "Salix goodingii"
   mynames <- c("Salix goodingii", "Poa annua")
