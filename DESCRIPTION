@@ -31,7 +31,7 @@ Imports:
 Suggests:
     testthat,
     knitr
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Phylogenetics
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
 X-schema.org-isPartOf: "https://ropensci.org"
