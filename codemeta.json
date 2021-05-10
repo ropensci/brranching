@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/ropensci/brranching",
   "issueTracker": "http://github.com/ropensci/brranching/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.1 (2020-06-06)",
+  "runtimePlatform": "R version 4.0.5 Patched (2021-03-31 r80136)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -54,18 +53,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "knitr",
-      "name": "knitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=knitr"
     }
   ],
   "softwareRequirements": [
@@ -166,11 +153,11 @@
   "applicationCategory": "Phylogenetics",
   "isPartOf": "\"https://ropensci.org\"",
   "keywords": ["phylogeny", "tree", "phylomatic", "molecular", "plants", "rstats", "phylogenies", "r", "r-package"],
-  "contIntegration": "https://travis-ci.org/ropensci/brranching",
+  "contIntegration": "https://codecov.io/github/ropensci/brranching?branch=master",
   "releaseNotes": "https://github.com/ropensci/brranching/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/brranching/blob/master/README.md",
-  "fileSize": "960.595KB",
-  "developmentStatus": "http://www.repostatus.org/#active",
+  "fileSize": "1010.216KB",
+  "developmentStatus": "https://www.repostatus.org/#active",
   "contributor": {},
   "copyrightHolder": {},
   "funder": {},

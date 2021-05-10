@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 4.0.1 Patched
-* ubuntu 16.04 (on travis-ci), R 4.0.1
+* local macOS install, R 4.0.5 Patched
+* ubuntu 16.04 (on GitHub Actions), R 4.0.5
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -14,9 +14,7 @@ There are no reverse dependencies.
 
 ---
 
-This version fixes usage of a dataset that was updated in the latest version of taxize.
-
-This is a re-submission of the same version (v0.6.0), fixing an "Non-file package-anchored link" issue.
+This version fixes the rmarkdown/markdown dependency issue for vignettes that Kurt emailed maintainers about.
 
 Thanks!
 Scott Chamberlain

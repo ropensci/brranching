@@ -1,3 +1,11 @@
+brranching 0.7.0
+================
+
+### MINOR IMPROVEMENTS
+
+* vignettes fix (#45)
+
+
 brranching 0.6.0
 ================
 
