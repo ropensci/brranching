@@ -11,13 +11,13 @@ Authors@R: c(
         email = "myrmecocystus@gmail.com",
         comment = c(ORCID = "0000-0003-1444-9135")))
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/brranching, https://github.com/ropensci/brranching
+URL: https://docs.ropensci.org/brranching (documentation)
+    https://github.com/ropensci/brranching (source)
 BugReports: http://github.com/ropensci/brranching/issues
 LazyLoad: yes
 LazyData: yes
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr
 Depends:
     R(>= 3.2.1)
 Imports:
@@ -29,8 +29,7 @@ Imports:
     phylocomr (>= 0.1.4),
     conditionz
 Suggests:
-    testthat,
-    knitr
+    testthat
 RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Phylogenetics
 X-schema.org-keywords: phylogeny, tree, phylomatic, molecular, plants
