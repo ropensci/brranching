@@ -14,7 +14,7 @@ jobs:
         config:
         - { os: windows-latest, r: 'release'}
         - { os: macOS-latest, r: 'release'}
-        - { os: macOS-latest, r: 'devel'}
+        # - { os: macOS-latest, r: 'devel'} # avoid R devel for now, R 4.2 problems
         - { os: ubuntu-16.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
