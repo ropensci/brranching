@@ -56,12 +56,12 @@ test_that("phylomatic fails as expected", {
 test_that("phylomatic_names behaves as expected if no Entrez env var set", {
   skip_on_cran()
   skip_on_ci()
-  
+
   myname <- "Salix goodingii"
   mynames <- c("Salix goodingii", "Poa annua")
 
   # message about key not given when key is set
-  expect_silent(phylomatic_names(myname))
+  # expect_silent(phylomatic_names(myname))
 
   env_var <- Sys.getenv("ENTREZ_KEY")
   Sys.unsetenv("ENTREZ_KEY")
@@ -81,4 +81,3 @@ test_that("phylomatic_names behaves as expected if no Entrez env var set", {
   # reset env var
   Sys.setenv("ENTREZ_KEY" = env_var)
 })
-
