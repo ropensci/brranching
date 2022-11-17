@@ -18,27 +18,29 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - { os: windows-latest, r: 'release'}
-        - { os: macOS-latest, r: 'release'}
-        # - { os: macOS-latest, r: 'devel'} # avoid R devel for now, R 4.2 problems
-        - { os: ubuntu-latest, r: 'release'}
-
+          - {os: macOS-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - uses: r-lib/actions/setup-r@v1
         with:
-          use-public-rspm: true
           r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
 
-      - uses: r-lib/actions/setup-pandoc@v2
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
+      - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: rcmdcheck
 
-      - uses: r-lib/actions/check-r-package@v2
+      - uses: r-lib/actions/check-r-package@v1
