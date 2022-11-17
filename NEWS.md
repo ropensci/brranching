@@ -2,6 +2,8 @@ brranching 0.7.0.91
 ===================
 
 * adding new maintainer info
+* Addresing #32 and #34 (see https://github.com/camwebb/phylomatic-ws)
+* Updating CI Rcmd checks with package `usethis`
 
 brranching 0.7.0
 ================
