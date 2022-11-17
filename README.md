@@ -3,19 +3,23 @@ brranching
 
 
 
+<!-- badges: start -->
+
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-check](https://github.com/ropensci/brranching/workflows/R-check/badge.svg)](https://github.com/ropensci/brranching/actions/)
 [![codecov.io](https://codecov.io/github/ropensci/brranching/coverage.svg?branch=master)](https://codecov.io/github/ropensci/brranching?branch=master)
 [![cran checks](https://cranchecks.info/badges/worst/brranching)](https://cranchecks.info/pkgs/brranching)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/brranching)](https://github.com/r-hub/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/brranching)](https://cran.r-project.org/package=brranching)
+[![R-CMD-check](https://github.com/LunaSare/brranching/workflows/R-CMD-check/badge.svg)](https://github.com/LunaSare/brranching/actions)
+<!-- badges: end -->
 
 ## Description
 
-Brranching is an interface to many different sources of phylogenetic data (currently only from Phylomatic (http://phylodiversity.net/phylomatic/), but more sources to come) that allows users to query for phylogenetic data using taxonomic names.  
+Brranching is an interface to many different sources of phylogenetic data (currently only from Phylomatic (http://phylodiversity.net/phylomatic/), but more sources to come) that allows users to query for phylogenetic data using taxonomic names.
 
-For `brranching::phylomatic_names()` function you should get an NCBI Entrez API key. NCBI Entrez doesn't require that 
-you use an API key, but you get higher rate limit with a key, from 3 to 10 requests per second, so do 
+For `brranching::phylomatic_names()` function you should get an NCBI Entrez API key. NCBI Entrez doesn't require that
+you use an API key, but you get higher rate limit with a key, from 3 to 10 requests per second, so do
 get one. Run `taxize::use_entrez()` or see https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/
 for instructions.
 

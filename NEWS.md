@@ -1,3 +1,10 @@
+brranching 0.7.0.91
+===================
+
+* adding new maintainer info
+* Addresing #32 and #34 (see https://github.com/camwebb/phylomatic-ws)
+* Updating CI Rcmd checks with package `usethis`
+
 brranching 0.7.0
 ================
 
@@ -60,20 +67,20 @@ brranching 0.2.0
 
 ### NEW FEATURES
 
-* Added function `phylomatic_local()` to use Phylomatic locally. 
-Phylomatic is a set of Awk scripts, which have to be downloaded 
-by the user. After downloading, this function uses the local version 
-of Phylomatic (Same as that that runs as a web service). This is 
+* Added function `phylomatic_local()` to use Phylomatic locally.
+Phylomatic is a set of Awk scripts, which have to be downloaded
+by the user. After downloading, this function uses the local version
+of Phylomatic (Same as that that runs as a web service). This is
 advantageous especially when dealing with large queries. (#13)
 
 ### MINOR IMPROVEMENTS
 
 * Fixed `clean` parameter in `phylomatic()` and `phylomatic_local()`
 to expect a logical (`TRUE` or `FALSE`) instead of a "true" or "false". (#15)
-* A related change to that above, changed reading newick strings to use 
+* A related change to that above, changed reading newick strings to use
 `phytools::read.newick()` instead of `ape::read.tree()`, which handles
 the result of `clean=FALSE` in `phylomatic()` and `phylomatic_local()` (#16)
-* Documented that in the `storedtree` parameter of `phylomatic()` and 
+* Documented that in the `storedtree` parameter of `phylomatic()` and
 `phylomatic_local()` the tree from Zanne et al. is also available by using
 `storedtree="zanne2014"` (#19)
 
