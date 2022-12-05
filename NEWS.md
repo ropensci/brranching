@@ -1,8 +1,15 @@
-brranching 0.7.0.91
-===================
+<!--
+brranching 0.7.2
+================
 
-* adding new maintainer info
-* Addresing #32 and #34 (see https://github.com/camwebb/phylomatic-ws)
+* Addressing ropensci/phylocomr#32 and ropensci/phylocomr#34 (see https://github.com/camwebb/phylomatic-ws)
+
+-->
+
+brranching 0.7.1
+================
+
+* adding new maintainer info #47
 * Updating CI Rcmd checks with package `usethis`
 
 brranching 0.7.0

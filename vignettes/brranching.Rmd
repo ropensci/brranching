@@ -11,7 +11,7 @@ brranching - an interface to phylogenetic data
 
 ## Description
 
-Brranching is an interface to many different sources of phylogenetic data (currently only from [Phylomatic](http://phylodiversity.net/phylomatic/), but more sources to come). It is used to query for phylogenetic data using taxonomic names and can be used to visualise the evolutionary history and relationships among individuals or groups of organisms. 
+Brranching is an interface to many different sources of phylogenetic data (currently only from [Phylomatic](http://phylodiversity.net/phylomatic/), but more sources to come). It is used to query for phylogenetic data using taxonomic names and can be used to visualize the evolutionary history and relationships among individuals or groups of organisms. 
 
 ## Installation
 
