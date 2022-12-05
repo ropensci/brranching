@@ -4,7 +4,7 @@ Description: Includes methods for fetching 'phylogenies' from a variety
     of sources, including the 'Phylomatic' web service
     (<http://phylodiversity.net/phylomatic/>), and 'Phylocom'
     (<https://github.com/phylocom/phylocom/>).
-Version: 0.7.0.91
+Version: 0.7.1
 Authors@R: c(
     person("Scott", "Chamberlain",
         role = c("aut"),
